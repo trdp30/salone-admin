@@ -20,7 +20,28 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    'ember-toastr': {
+      injectAs: 'toast',
+      toastrOptions: {
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: false,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: '300',
+        hideDuration: '1000',
+        timeOut: '4000',
+        extendedTimeOut: '1000',
+        showEasing: 'swing',
+        hideEasing: 'linear',
+        showMethod: 'fadeIn',
+        hideMethod: 'fadeOut'
+      }
+    },
   };
 
   if (environment === 'development') {
