@@ -11,16 +11,16 @@
   </thead>
   <tbody>
     {{#each model as |data|}}
-    <tr>
-      {{#each columns as |column index|}}
-        {{#if (and (eq type 'category') (eq index 0))}}
-          <td>
-            <img src="{{data.image_source}}" style="width: 30px;  height: 30px">
-          </td>
-        {{/if}}
-        <td>{{get-property data column.key}}</td>
-      {{/each}}
-    </tr>
+      {{#link-to (concat type '.edit') data.id tagName="tr"}}
+        {{#each columns as |column index|}}
+          {{#if (and (eq type 'category') (eq index 0))}}
+            <td>
+              <img src="{{data.image_source}}" style="width: 30px;  height: 30px">
+            </td>
+          {{/if}}
+          <td>{{get-property data column.key}}</td>
+        {{/each}}
+      {{/link-to}}
     {{/each}}
   </tbody>
 </table>
