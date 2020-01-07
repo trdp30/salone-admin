@@ -1,0 +1,20 @@
+{{#power-select
+  searchEnabled=searchEnabled
+  options=listSource
+  search=(action 'searchAction')
+  onclose=(action 'onclose')
+  searchField=searchField
+  renderInPlace=renderInPlace
+  selected=selectedOption
+  placeholder=placeHolder
+  onchange=(action (mut selectedOption))
+  triggerClass=triggerClass
+  dropdownClass=dropdownClass
+as |option|}}
+    {{#if optionLabel}}
+      {{get-property option optionLabel}}
+    {{else}}
+      {{option}}
+    {{/if}}
+{{/power-select}}
+{{yield}}

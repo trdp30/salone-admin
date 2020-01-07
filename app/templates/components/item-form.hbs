@@ -1,1 +1,47 @@
+<form class="ui form">
+  <div class="two fields">
+    <div class="field required">
+      <label>Name</label>
+      {{input value=model.name}}
+    </div>
+    <div class="field required">
+      <label>Category</label>
+      {{power-select-dropdown
+        searchEnabled=true
+        searchField='name'
+        optionLabel='name'
+        renderInPlace=true
+        selectedOption=model.category
+        placeHolder="Select Category"
+        modelName="category"
+      }}
+    </div>
+  </div>
+  <div class="field">
+    <label>Description</label>
+    {{input value=model.description}}
+  </div>
+  <div class="field">
+    <label>Price</label>
+    {{input type="number" value=model.price}}
+  </div>
+  <div class="two fields">
+    <div class="field required">
+      <label>Image URL</label>
+      {{input value=model.image_source}}
+    </div>
+    {{#if model.image_source}}
+      <div class="field" style="padding: 10px">
+        <img src={{model.image_source}} style="width: 40px; height: 40px">
+      </div>
+    {{/if}}
+  </div>
+  {{#if (eq type "update")}}
+    <button class="ui positive button" {{action 'update' model}}>Update</button>
+    <button class="ui negative button" {{action 'delete' model}}>Delete</button>
+  {{else if (eq type "create")}}
+    <button class="ui positive button" {{action 'save' model}}>Save</button>
+  {{/if}}
+    <button class="ui button" {{action 'back'}}>Cancel</button>
+</form>
 {{yield}}

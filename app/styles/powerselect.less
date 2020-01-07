@@ -1,0 +1,141 @@
+// Ember power select styles
+//--------------------------------
+
+@green: #4caf50;
+
+.ember-power-select {
+  text-align: left;
+  font-size: 1em;
+
+  &-trigger {
+    padding: 4.5px 10px;
+    overflow-y: hidden;
+    min-height: 35px;
+    width:100%;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    font-weight: lighter;
+    cursor: pointer;
+    color: darken(#eee, 70%);
+    font-weight: normal;
+    text-align: left;
+
+    span {
+    padding-left: 5px;
+      i {
+        display: none;
+      }
+    }
+  }
+  &-trigger:focus {
+  // border: none;
+  outline: none;
+
+  }
+  &-trigger--active {
+  outline: none;
+  // border: 1px solid @tgreen;
+
+  }
+  &-search-input{
+     outline-color: none;
+     border-color: darken(#eee, 10%);
+     padding: 5px;
+     &:focus{
+      outline: none;
+      border: 1px solid @green;
+     }
+  }
+  &-dropdown {
+    // border: 1px solid @tgreen;
+    line-height: 1.75;
+    box-shadow: none;
+    overflow: hidden;
+    color: inherit;
+
+
+  }
+  &-option {
+    font-size: 1em;
+    padding: 8px 10px;
+    line-height: 19px;
+    color: #2d2d2d;
+    //
+    // font-weight: lighter;
+  }
+  &-option[aria-current="true"]{
+    background-color: #eee;
+    border:0.5px solid white;
+    color: #2d2d2d;
+  }
+  &-option[aria-selected="true"]{
+    background-color: darken(#eee, 3%);
+    color: #000;
+    font-weight: bold;
+  }
+  &-status-icon {
+    border: none !important;
+    right: 20px;
+  }
+  &-status-icon::after {
+    border-style:solid;
+    border-width: 2px 2px 0 0;
+    content: '';
+    display: inline-block;
+    height: 6px;
+    left: 0;
+    position: relative;
+    top: -4px;
+    transform: rotate(135deg);
+    vertical-align: top;
+    width: 6px;
+  }
+
+  &-selected-item {
+    white-space: nowrap;
+  }
+}
+
+
+.ember-power-select-status-icon::after {
+    border-style: none;
+    border-width: none;
+    content: '\f0d7';
+    font-family: Icons;
+    display: inline-block;
+    height: 6px;
+    left: 0;
+    position: relative;
+    top: -10px;
+    transform: rotate(0deg);
+    vertical-align: top;
+    width: 6px;
+    font-size: 11px;
+    color: #000;
+}
+.ember-basic-dropdown-trigger[aria-expanded="true"] .ember-power-select-status-icon {
+    transform: rotate(0deg);
+
+}
+
+
+.upward-dropdown {
+  & + div {
+    &>div.ember-basic-dropdown-content {
+      transform: translateY(-210px);
+    }
+  }
+}
+
+.search-panel{
+  .ember-power-select-trigger{
+    padding: 4.5px 10px ;
+    input[type="search"] {
+      border-style: none;
+      padding: 0;
+      line-height: inherit;
+    }
+  }
+}
+// .upward-dropdown + div > div.ember-basic-dropdown-content {
+//   transform: translateY(-210px);
+// }

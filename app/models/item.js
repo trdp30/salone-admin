@@ -1,13 +1,14 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  name                : DS.attr('string'),
   category            : DS.belongsTo('category'),
+  description         : DS.attr('string'),
+  price               : DS.attr('number'),
+  image_source        : DS.attr('string'),
   created_at          : DS.attr('date'),
   created_by          : DS.attr('number'),
-  description         : DS.attr('string'),
   is_deleted          : DS.attr('boolean'),
-  name                : DS.attr('string'),
-  price               : DS.attr('number'),
   updated_at          : DS.attr('date'),
-  updated_by          : DS.attr('number'),
+  updated_by          : DS.attr('number')
 });
