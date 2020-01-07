@@ -1,19 +1,19 @@
 <table class="ui red table">
   <thead>
-    <tr><th>Food</th>
-    <th>Calories</th>
-    <th>Protein</th>
-  </tr></thead><tbody>
     <tr>
-      <td>Apples</td>
-      <td>200</td>
-      <td>0g</td>
+      {{#each columns as |column|}}
+        <th>{{column.name}}</th>
+      {{/each}}
     </tr>
+  </thead>
+  <tbody>
+    {{#each model as |data|}}
     <tr>
-      <td>Orange</td>
-      <td>310</td>
-      <td>0g</td>
+      {{#each columns as |column|}}
+        <td>{{get-property data column.key}}</td>
+      {{/each}}
     </tr>
+    {{/each}}
   </tbody>
 </table>
 {{yield}}
