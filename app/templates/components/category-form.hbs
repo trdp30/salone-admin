@@ -1,1 +1,22 @@
+<form class="ui form">
+  <div class="two fields">
+    <div class="field required">
+      <label>Name</label>
+      {{input value=model.name}}
+    </div>
+    <div class="field required">
+      <label>Display name</label>
+      {{input value=model.display_name}}
+    </div>
+  </div>
+  <div class="field required">
+    <label>Description</label>
+    {{input value=model.description}}
+  </div>
+  <div class="field required">
+    <label>Logo URL</label>
+    {{input value=model.image_source}}
+  </div>
+  <button class="ui button" {{action 'save' model}}>Save</button>
+</form>
 {{yield}}
