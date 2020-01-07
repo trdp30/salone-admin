@@ -1,6 +1,9 @@
 <table class="ui red table">
   <thead>
     <tr>
+      {{#if (eq type 'category')}}
+        <th>Logo</th>
+      {{/if}}
       {{#each columns as |column|}}
         <th>{{column.name}}</th>
       {{/each}}
@@ -9,7 +12,12 @@
   <tbody>
     {{#each model as |data|}}
     <tr>
-      {{#each columns as |column|}}
+      {{#each columns as |column index|}}
+        {{#if (and (eq type 'category') (eq index 0))}}
+          <td>
+            <img src="{{data.image_source}}" style="width: 30px;  height: 30px">
+          </td>
+        {{/if}}
         <td>{{get-property data column.key}}</td>
       {{/each}}
     </tr>
