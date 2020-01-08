@@ -46,8 +46,7 @@
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "lodash": "^4.17.15",
-    "semantic-ui": "^2.2.14",
-    "semantic-ui-ember": "^3.0.4",
+    "semantic-ui-ember": "^2.1.0",
     "toastr": "^2.1.4"
   },
   "engines": {
