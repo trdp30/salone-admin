@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import RSVP from 'rsvp';
 
 export default Component.extend({
   store: service(),
@@ -82,6 +83,17 @@ export default Component.extend({
 
     back() {
       window.history.back()
+    },
+
+    upload(items) {
+      return RSVP.all(items.map((item) => {
+        return this.get('store').createRecord('item', {
+          name: category.name,
+          display_name: category.display_name,
+          image_source: category.image_source
+        }).save()
+        .catch(e => console.log(e))
+      })).then((res) => console.log(res))
     }
   }
 });

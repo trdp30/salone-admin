@@ -44,4 +44,12 @@
   {{/if}}
     <button class="ui button" {{action 'back'}}>Cancel</button>
 </form>
+<hr/>
+{{!-- <form class="ui form">
+  <div class="field">
+    <label>Insert in bulk</label>
+    {{textarea value=categoryJson placeholder="Only JSON"}}
+  </div>
+  <button class="ui positive button" {{action 'upload' categoryJson}}>Upload</button>
+</form> --}}
 {{yield}}
