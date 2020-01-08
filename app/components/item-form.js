@@ -42,7 +42,7 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.name}" created`)
         return this.set('model', this.createRecord());
       }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return this.get('toast').error(e)
       })
     },
@@ -65,7 +65,7 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.name}" updated`)
         return window.history.back()
       }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return this.get('toast').error(e)
       })
     },
@@ -76,7 +76,7 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.name}" deleted`)
         return window.history.back()
       }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return this.get('toast').error(e)
       })
     },
@@ -88,11 +88,11 @@ export default Component.extend({
     upload(items) {
       return RSVP.all(items.map((item) => {
         return this.get('store').createRecord('item', {
-          name: category.name,
-          display_name: category.display_name,
-          image_source: category.image_source
+          name: item.name,
+          display_name: item.display_name,
+          image_source: item.image_source
         }).save()
-        .catch(e => console.log(e))
+        // .catch(e => console.log(e))
       })).then((res) => console.log(res))
     }
   }

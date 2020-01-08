@@ -34,7 +34,7 @@ export default Component.extend({
         this.get('toast').success(`Category "${model.display_name}" created`);
         return this.set('model', this.createRecord());
       }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return this.get('toast').error(e);
       })
     },
@@ -54,7 +54,7 @@ export default Component.extend({
         this.get('toast').success(`Category "${model.display_name}" updated`);
         return window.history.back()
       }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return this.get('toast').error(e);
       })
     },
@@ -65,7 +65,7 @@ export default Component.extend({
         this.get('toast').success(`Category "${model.display_name}" deleted`);
         return window.history.back()
       }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return this.get('toast').error(e);
       })
     },
@@ -81,8 +81,8 @@ export default Component.extend({
           display_name: category.display_name,
           image_source: category.image_source
         }).save()
-        .catch(e => console.log(e))
-      })).then((res) => console.log(res))
+        // .catch(e => console.log(e))
+      }))
     }
   }
 });
