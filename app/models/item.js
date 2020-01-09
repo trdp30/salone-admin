@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
   name                : DS.attr('string'),
@@ -10,5 +11,12 @@ export default DS.Model.extend({
   created_by          : DS.attr('number'),
   is_deleted          : DS.attr('boolean'),
   updated_at          : DS.attr('date'),
-  updated_by          : DS.attr('number')
+  updated_by          : DS.attr('number'),
+  organization        : DS.belongsTo('organization'),
+
+  orgName: computed('organization.isFulfilled', function() {
+    if(this.get('organization')) {
+      return this.get('organization.name')
+    }
+  })
 });

@@ -15,6 +15,7 @@ export default Route.extend({
       EmberObject.create({ key: "name", name: "Name" }),
       EmberObject.create({ key: "description", name: "Description" }),
       EmberObject.create({ key: "image_source", name: "Image Source" }),
+      EmberObject.create({ key: "orgName", name: "Organization" }),
     ]))
   }
 });

@@ -20,6 +20,9 @@ export default Component.extend({
 
   actions: {
     save(model) {
+      if(!model.get('organization.id')) {
+        return this.get('toast').error('Organization cannot be blank');
+      }
       if(!model.get('name')) {
         return this.get('toast').error('Name cannot be blank');
       }
@@ -40,6 +43,9 @@ export default Component.extend({
     },
 
     update(model) {
+      if(!model.get('organization.id')) {
+        return this.get('toast').error('Organization cannot be blank');
+      }
       if(!model.get('name')) {
         return this.get('toast').error('Name cannot be blank');
       }

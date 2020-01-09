@@ -15,6 +15,7 @@ export default Route.extend({
       EmberObject.create({ key: "category.display_name", name: "Category" }),
       EmberObject.create({ key: "description", name: "Description" }),
       EmberObject.create({ key: "price", name: "Price" }),
+      EmberObject.create({ key: "orgName", name: "Organization" }),
     ]))
   }
 });

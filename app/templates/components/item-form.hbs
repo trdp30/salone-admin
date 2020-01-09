@@ -1,4 +1,16 @@
 <form class="ui form">
+  <div class="field required">
+    <label>Category</label>
+    {{power-select-dropdown
+      searchEnabled=true
+      searchField='name'
+      optionLabel='name'
+      renderInPlace=true
+      selectedOption=model.organization
+      placeHolder="Select Organization"
+      modelName="organization"
+    }}
+  </div>
   <div class="two fields">
     <div class="field required">
       <label>Name</label>
