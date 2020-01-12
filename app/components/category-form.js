@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
+// import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -9,6 +10,10 @@ export default Component.extend({
   createRecord() {
     return this.get('store').createRecord('category')
   },
+
+  // organizations: computed(function() {
+  //   return this.get('store').findAll('organization')
+  // }),
 
   willDestroyElement() {
     if(this.get('type') == "create") {
@@ -19,6 +24,22 @@ export default Component.extend({
   },
 
   actions: {
+    addAll() {
+      RSVP.all(categories.map((category) => {
+        return this.get('store').createRecord('category', {
+          name: category.name,
+          display_name: category.display_name,
+          organization: this.get('organizations.firstObject'),
+          image_source: "",
+          description: ""
+        }).save()
+        .then((res) => {
+          console.log('created', category.name)
+        })
+        .catch((e) => console.log('failed', category.name, e))
+      }))
+    },
+
     save(model) {
       if(!model.get('organization.id')) {
         return this.get('toast').error('Organization cannot be blank');

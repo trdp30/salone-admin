@@ -15,6 +15,10 @@ export default Component.extend({
     return this.get('store').findAll('category')
   }),
 
+  // organizations: computed(function() {
+  //   return this.get('store').findAll('organization')
+  // }),
+
   willDestroyElement() {
     if(this.get('type') == "create") {
       this.get('model').destroyRecord()
@@ -24,6 +28,25 @@ export default Component.extend({
   },
 
   actions: {
+    addAll() {
+      RSVP.all(items.map((item) => {
+        let category = this.get('categories').findBy('name', item.category.name)
+        return this.get('store').createRecord('item', {
+          category: category,
+          description: "",
+          image_source: "",
+          name: item.name,
+          organization: this.get('organizations.firstObject'),
+          price: item.price,
+          mrp: item.mrp
+        }).save()
+        .then((res) => {
+          console.log('created', item.name)
+        })
+        .catch((e) => console.log('failed', item.name, e))
+      }))
+    },
+
     save(model) {
       if(!model.get('organization.id')) {
         return this.get('toast').error('Organization cannot be blank');
