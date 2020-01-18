@@ -63,6 +63,9 @@ export default Component.extend({
       if(!model.get('image_source')) {
         return this.get('toast').error('Image Source cannot be blank');
       }
+      if(!model.get('mrp_price')) {
+        return this.get('toast').error('MRP Price cannot be blank');
+      }
       model.save()
       .then(() => {
         this.get('toast').success(`Item "${model.name}" created`)
@@ -88,6 +91,9 @@ export default Component.extend({
       }
       if(!model.get('image_source')) {
         return this.get('toast').error('Image Source cannot be blank');
+      }
+      if(!model.get('mrp_price')) {
+        return this.get('toast').error('MRP Price cannot be blank');
       }
       model.save()
       .then(() => {

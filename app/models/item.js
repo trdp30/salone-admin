@@ -13,6 +13,7 @@ export default DS.Model.extend({
   updated_at          : DS.attr('date'),
   updated_by          : DS.attr('number'),
   organization        : DS.belongsTo('organization'),
+  mrp_price           : DS.attr('number'),
 
   orgName: computed('organization.isFulfilled', function() {
     if(this.get('organization')) {
