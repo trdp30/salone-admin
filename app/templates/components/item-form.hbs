@@ -1,8 +1,9 @@
 <form class="ui form">
   <div class="field required">
-    <label>Category</label>
+    <label>Organization</label>
     {{power-select-dropdown
       searchEnabled=true
+      isRemoteSearch=true
       searchField='name'
       optionLabel='name'
       renderInPlace=true
@@ -20,6 +21,7 @@
       <label>Category</label>
       {{power-select-dropdown
         searchEnabled=true
+        isRemoteSearch=true
         searchField='name'
         optionLabel='name'
         renderInPlace=true
@@ -29,6 +31,20 @@
       }}
     </div>
   </div>
+  {{#if (and model.category model.category.hasSubCategory)}}
+    <div class="field">
+      <label>Sub Category</label>
+      {{power-select-dropdown
+        searchEnabled=true
+        listSource=model.category.subCateroies
+        searchField='name'
+        optionLabel='name'
+        renderInPlace=true
+        selectedOption=model.subCategory
+        placeHolder="Select Sub Category"
+      }}
+    </div>
+  {{/if}}
   <div class="field">
     <label>Description</label>
     {{input value=model.description}}

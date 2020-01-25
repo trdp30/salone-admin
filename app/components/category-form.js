@@ -6,6 +6,7 @@ import RSVP from 'rsvp';
 export default Component.extend({
   store: service(),
   toast: service(),
+  subCategory: '',
 
   createRecord() {
     return this.get('store').createRecord('category')
@@ -53,9 +54,15 @@ export default Component.extend({
       if(!model.get('image_source')) {
         return this.get('toast').error('Image Source cannot be blank');
       }
+      if(model.get('hasSubCategory') && this.get('subCategory').trim()) {
+        let subCategorys = this.get('subCategory').split(',')
+        model.set('subCateroies', subCategorys.map((subCategory) => ({ type: subCategory.trim(), name: subCategory.trim() })))
+      } else {
+        return this.get('toast').error('Sub Category Cannot be empty');
+      }
       model.save()
       .then(() => {
-        this.get('toast').success(`Category "${model.display_name}" created`);
+        this.get('toast').success(`Category "${model.get('display_name')}" created`);
         return this.set('model', this.createRecord());
       }).catch((e) => {
         // console.log(e)
@@ -76,9 +83,15 @@ export default Component.extend({
       if(!model.get('image_source')) {
         return this.get('toast').error('Image Source cannot be blank');
       }
+      if(model.get('hasSubCategory') && this.get('subCategory').trim()) {
+        let subCategorys = this.get('subCategory').split(',')
+        model.set('subCateroies', subCategorys.map((subCategory) => ({ type: subCategory.trim(), name: subCategory.trim() })))
+      } else {
+        return this.get('toast').error('Sub Category Cannot be empty');
+      }
       model.save()
       .then(() => {
-        this.get('toast').success(`Category "${model.display_name}" updated`);
+        this.get('toast').success(`Category "${model.get('display_name')}" updated`);
         return window.history.back()
       }).catch((e) => {
         // console.log(e)
@@ -89,7 +102,7 @@ export default Component.extend({
     delete(model) {
       model.destroyRecord()
       .then(() => {
-        this.get('toast').success(`Category "${model.display_name}" deleted`);
+        this.get('toast').success(`Category "${model.get('display_name')}" deleted`);
         return window.history.back()
       }).catch((e) => {
         // console.log(e)

@@ -14,6 +14,7 @@ export default DS.Model.extend({
   updated_by          : DS.attr('number'),
   organization        : DS.belongsTo('organization'),
   mrp_price           : DS.attr('number'),
+  subCategory         : DS.attr(),
 
   orgName: computed('organization.isFulfilled', function() {
     if(this.get('organization')) {

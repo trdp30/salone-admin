@@ -14,6 +14,8 @@ export default DS.Model.extend({
   updated_at        : DS.attr('date'),
   updated_by        : DS.attr('number'),
   organization      : DS.belongsTo('organization'),
+  hasSubCategory    : DS.attr('boolean', { defaultValue: false }),
+  subCateroies      : DS.attr(),
 
   orgName: computed('organization.isFulfilled', function() {
     if(this.get('organization')) {
