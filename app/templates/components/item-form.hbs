@@ -60,7 +60,7 @@
   <div class="two fields">
     <div class="field required">
       <label>Image URL</label>
-      {{input value=model.image_source}}
+      {{upload-image uploadComplete=(action 'uploadComplete')}}
     </div>
     {{#if model.image_source}}
       <div class="field" style="padding: 10px">

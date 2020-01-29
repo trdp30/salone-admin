@@ -1,0 +1,15 @@
+{{file-upload
+  class="file-upload"
+  progress=progress
+  isUploading=isUploading
+  toggleView=(action 'toggleView')
+  reset=(action 'reset')
+  uploadComplete=(action uploadComplete)
+}}
+{{#if isUploading}}
+  {{#ui-progress percent=progress class="tiny teal indicating"}}
+    <div class="bar"></div>
+    <div class="label">{{progress}}%</div>
+  {{/ui-progress}}
+{{/if}}
+{{yield}}

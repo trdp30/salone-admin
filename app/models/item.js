@@ -15,6 +15,7 @@ export default DS.Model.extend({
   organization        : DS.belongsTo('organization'),
   mrp_price           : DS.attr('number'),
   subCategory         : DS.attr(),
+  file                : DS.belongsTo('file'),
 
   orgName: computed('organization.isFulfilled', function() {
     if(this.get('organization')) {
