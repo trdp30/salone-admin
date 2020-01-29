@@ -60,12 +60,14 @@ export default FileField.extend({
       bucket: data.bucket,
       fullPath: data.fullPath,
       name: data.name,
-      url: url
+      file_source: url
     }).save()
     .then((res) => {
       this.get('toast').success('Image uploaded successfully')
-      this.sendAction('reset')
-      this.sendAction('uploadComplete', res)
+      this.get('store').findRecord('file', res.get('id')).then((file) => {
+        this.sendAction('reset')
+        this.sendAction('uploadComplete', file)
+      })
     })
     .catch((e) => {
       this.sendAction('reset')

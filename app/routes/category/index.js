@@ -1,15 +1,21 @@
 import Route from '@ember/routing/route';
 import EmberObject from '@ember/object';
 import { A } from '@ember/array';
+import { hash } from 'rsvp';
 
 export default Route.extend({
   model() {
-    return this.get('store').findAll('category')
+    return hash({
+      categories: A(),
+      organizations: this.get('store').findAll('organization')
+    })
   },
 
   setupController(controller, model) {
     this._super(...arguments);
-    controller.set('model', model);
+    controller.set('categories', model.categories);
+    controller.set('organizations', model.organizations)
+    controller.set('selectedOrganization', controller.get('organizations.firstObject'))
     controller.set('columns', A([
       EmberObject.create({ key: "display_name", name: "Display Name" }),
       EmberObject.create({ key: "name", name: "Name" }),

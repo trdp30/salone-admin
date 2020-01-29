@@ -56,7 +56,7 @@ export default Component.extend({
       }
       if(model.get('hasSubCategory') && this.get('subCategory').trim()) {
         let subCategorys = this.get('subCategory').split(',')
-        model.set('subCateroies', subCategorys.map((subCategory) => ({ type: subCategory.trim(), name: subCategory.trim() })))
+        model.set('sub_categories', subCategorys.map((subCategory) => ({ type: subCategory.trim(), name: subCategory.trim() })))
       } else {
         return this.get('toast').error('Sub Category Cannot be empty');
       }
@@ -85,7 +85,7 @@ export default Component.extend({
       }
       if(model.get('hasSubCategory') && this.get('subCategory').trim()) {
         let subCategorys = this.get('subCategory').split(',')
-        model.set('subCateroies', subCategorys.map((subCategory) => ({ type: subCategory.trim(), name: subCategory.trim() })))
+        model.set('sub_categories', subCategorys.map((subCategory) => ({ type: subCategory.trim(), name: subCategory.trim() })))
       } else {
         return this.get('toast').error('Sub Category Cannot be empty');
       }
