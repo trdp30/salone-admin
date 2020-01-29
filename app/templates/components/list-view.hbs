@@ -9,33 +9,43 @@
       {{/each}}
     </tr>
   </thead>
-  <tbody>
-    {{#each model as |data|}}
-      {{#link-to (concat type '.edit') data.id tagName="tr"}}
-        {{#each columns as |column index|}}
-          {{#if (and (eq type 'category') (eq index 0))}}
-            <td>
-              <img src="{{data.image_source}}" style="width: 30px;  height: 30px">
-            </td>
-          {{/if}}
-          {{#if (eq column.name "Category")}}
-            {{#if data.category.isFulfilled}}
-              <td>{{get-property data column.key}}</td>
-            {{else}}
-              <td>Loading...</td>
+  {{#if model.length}}
+    <tbody>
+      {{#each model as |data|}}
+        {{#link-to (concat type '.edit') data.id tagName="tr"}}
+          {{#each columns as |column index|}}
+            {{#if (and (eq type 'category') (eq index 0))}}
+              <td>
+                <img src="{{data.image_source}}" style="width: 30px;  height: 30px">
+              </td>
             {{/if}}
-          {{else if (eq column.name "Organization")}}
-            {{#if data.organization.isFulfilled}}
-              <td>{{get-property data column.key}}</td>
+            {{#if (eq column.name "Category")}}
+              {{#if data.category.isFulfilled}}
+                <td>{{get-property data column.key}}</td>
+              {{else}}
+                <td>Loading...</td>
+              {{/if}}
+            {{else if (eq column.name "Organization")}}
+              {{#if data.organization.isFulfilled}}
+                <td>{{get-property data column.key}}</td>
+              {{else}}
+                <td>Loading...</td>
+              {{/if}}
             {{else}}
-              <td>Loading...</td>
+              <td>{{get-property data column.key}}</td>
             {{/if}}
-          {{else}}
-            <td>{{get-property data column.key}}</td>
-          {{/if}}
-        {{/each}}
-      {{/link-to}}
-    {{/each}}
-  </tbody>
+          {{/each}}
+        {{/link-to}}
+      {{/each}}
+    </tbody>
+  {{else if isLoading}}
+    <div style="height: calc(100vh - 100px); text-align: center; width: 100%">
+      Loading...
+    </div>
+  {{else}}
+    <div style="height: calc(100vh - 100px);text-align: center; width: 100%">
+      No data found
+    </div>
+  {{/if}}
 </table>
 {{yield}}

@@ -17,6 +17,17 @@ module.exports = function(environment) {
       }
     },
 
+    firebase: {
+      apiKey: "AIzaSyAJ_W6Ba26Cblw3m7Q1rTEOOoQc7bi8Lds",
+      authDomain: "homswag.firebaseapp.com",
+      databaseURL: "https://homswag.firebaseio.com",
+      projectId: "homswag",
+      storageBucket: "homswag.appspot.com",
+      messagingSenderId: "385989703905",
+      appId: "1:385989703905:web:36b14827016cf8a9e3dfa0",
+      measurementId: "G-88DTQ95208"
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

@@ -1,8 +1,9 @@
 <form class="ui form">
   <div class="field required">
-    <label>Category</label>
+    <label>Organization</label>
     {{power-select-dropdown
       searchEnabled=true
+      isRemoteSearch=true
       searchField='name'
       optionLabel='name'
       renderInPlace=true
@@ -20,6 +21,7 @@
       <label>Category</label>
       {{power-select-dropdown
         searchEnabled=true
+        isRemoteSearch=true
         searchField='name'
         optionLabel='name'
         renderInPlace=true
@@ -29,6 +31,20 @@
       }}
     </div>
   </div>
+  {{#if (and model.category model.category.hasSubCategory)}}
+    <div class="field">
+      <label>Sub Category</label>
+      {{power-select-dropdown
+        searchEnabled=true
+        listSource=model.category.sub_categories
+        searchField='name'
+        optionLabel='name'
+        renderInPlace=true
+        selectedOption=model.sub_category
+        placeHolder="Select Sub Category"
+      }}
+    </div>
+  {{/if}}
   <div class="field">
     <label>Description</label>
     {{input value=model.description}}
@@ -41,17 +57,19 @@
     <label>MRP Price</label>
     {{input type="number" value=model.mrp_price}}
   </div>
-  <div class="two fields">
-    <div class="field required">
-      <label>Image URL</label>
-      {{input value=model.image_source}}
-    </div>
-    {{#if model.image_source}}
-      <div class="field" style="padding: 10px">
-        <img src={{model.image_source}} style="width: 40px; height: 40px">
+  {{#if model.organization}}
+    <div class="two fields">
+      <div class="field required">
+        <label>Image URL</label>
+        {{upload-image uploadComplete=(action 'uploadComplete') organization=model.organization}}
       </div>
-    {{/if}}
-  </div>
+      {{#if model.image_source}}
+        <div class="field" style="padding: 10px">
+          <img src={{model.image_source}} style="width: 140px; height: 170px">
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
   {{#if (eq type "update")}}
     <button class="ui positive button" {{action 'update' model}}>Update</button>
     <button class="ui negative button" {{action 'delete' model}}>Delete</button>

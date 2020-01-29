@@ -3,6 +3,7 @@
     <label>Category</label>
     {{power-select-dropdown
       searchEnabled=true
+      isRemoteSearch=true
       searchField='name'
       optionLabel='name'
       renderInPlace=true
@@ -22,9 +23,14 @@
     </div>
   </div>
   <div class="field required">
-    <label>Description</label>
-    {{input value=model.description}}
+    {{ui-checkbox class="toggle" label="Has Sub Category?" checked=model.hasSubCategory onChange=(action (mut model.hasSubCategory))}}
   </div>
+  {{#if model.hasSubCategory}}
+    <div class="field required">
+      <label>Enter Sub Categories (coma(,) separated)</label>
+      {{input value=subCategory}}
+    </div>
+  {{/if}}
   <div class="two fields">
     <div class="field required">
       <label>Logo URL</label>

@@ -120,6 +120,11 @@ export default Component.extend({
       window.history.back()
     },
 
+    uploadComplete(file) {
+      this.set('model.image_source', file.get('file_source'))
+      this.set('model.file', file)
+    },
+
     upload(items) {
       return RSVP.all(items.map((item) => {
         return this.get('store').createRecord('item', {
