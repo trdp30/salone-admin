@@ -60,7 +60,8 @@ export default FileField.extend({
       bucket: data.bucket,
       fullPath: data.fullPath,
       name: data.name,
-      file_source: url
+      file_source: url,
+      organization: this.get('organization')
     }).save()
     .then((res) => {
       this.get('toast').success('Image uploaded successfully')
