@@ -6,8 +6,8 @@ import _ from 'lodash';
 export default Component.extend({
   store: service(),
 
-  listSource: computed('s', 'modelName', function() {
-    let query = _.omitBy(this.getProperties(['s']), _.isNil);
+  listSource: computed('s', 'modelName', 'organization_id', function() {
+    let query = _.omitBy(this.getProperties(['s', 'organization_id']), _.isNil);
     _.merge(query, this.get('modelQuery') || {});
     return this.get('store').query(this.get('modelName'), query)
   }),

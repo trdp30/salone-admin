@@ -17,19 +17,22 @@
       <label>Name</label>
       {{input value=model.name}}
     </div>
-    <div class="field required">
-      <label>Category</label>
-      {{power-select-dropdown
-        searchEnabled=true
-        isRemoteSearch=true
-        searchField='name'
-        optionLabel='name'
-        renderInPlace=true
-        selectedOption=model.category
-        placeHolder="Select Category"
-        modelName="category"
-      }}
-    </div>
+    {{#if model.organization}}
+      <div class="field required">
+        <label>Category</label>
+        {{power-select-dropdown
+          searchEnabled=true
+          isRemoteSearch=true
+          searchField='name'
+          optionLabel='name'
+          renderInPlace=true
+          organization_id=model.organization.id
+          selectedOption=model.category
+          placeHolder="Select Category"
+          modelName="category"
+        }}
+      </div>
+    {{/if}}
   </div>
   {{#if (and model.category model.category.hasSubCategory)}}
     <div class="field">
