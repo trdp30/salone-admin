@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
-// import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -12,9 +11,12 @@ export default Component.extend({
     return this.get('store').createRecord('category')
   },
 
-  // organizations: computed(function() {
-  //   return this.get('store').findAll('organization')
-  // }),
+  didInsertElement() {
+    if(this.get('model.sub_categories')) {
+      this.set('subCategory', this.get('model.sub_categories').map(sc => sc.name).join(','))
+    }
+  },
+
 
   willDestroyElement() {
     if(this.get('type') == "create") {
