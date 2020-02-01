@@ -17,61 +17,64 @@
       <label>Name</label>
       {{input value=model.name}}
     </div>
-    {{#if model.organization}}
-      <div class="field required">
-        <label>Items</label>
-        {{power-select-dropdown
-          searchEnabled=true
-          isRemoteSearch=true
-          searchField='name'
-          optionLabel='name'
-          renderInPlace=true
-          customAction=(action 'addItem')
-          isCustomAction=true
-          organization_id=model.organization.id
-          placeHolder="Select Items"
-          modelName="item"
-        }}
-      </div>
-      {{#if model.items.length}}
-        {{#each model.items as |item|}}
-          {{item.name}}
-        {{/each}}
-      {{/if}}
-    {{/if}}
-  </div>
-  <div class="field">
-    <label>Description</label>
-    {{input value=model.description}}
-  </div>
-  <div class="field">
-    <label>Price</label>
-    {{input type="number" value=model.price}}
-  </div>
-  <div class="field">
-    <label>MRP Price</label>
-    {{input type="number" value=model.mrp_price}}
+    <div class="field">
+      <label>Description</label>
+      {{input value=model.description}}
+    </div>
   </div>
   {{#if model.organization}}
-    <div class="two fields">
-      <div class="field required">
-        <label>Image URL</label>
-        {{upload-image uploadComplete=(action 'uploadComplete') organization=model.organization}}
-      </div>
-      {{#if model.image_source}}
-        <div class="field" style="padding: 10px">
-          <img src={{model.image_source}} style="width: 310px; height: 160px">
-        </div>
-      {{/if}}
+    <div class="field required">
+      <label>Items</label>
+      {{power-select-dropdown
+        searchEnabled=true
+        isRemoteSearch=true
+        searchField='name'
+        optionLabel='name'
+        renderInPlace=true
+        customAction=(action 'addItem')
+        isCustomAction=true
+        organization_id=model.organization.id
+        placeHolder="Select Items"
+        modelName="item"
+      }}
     </div>
+    {{#if model.items.length}}
+      {{#each model.items as |item|}}
+        {{item.name}}
+      {{/each}}
+    {{/if}}
   {{/if}}
-  {{#if (eq type "update")}}
-    <button class="ui positive button" {{action 'update' model}}>Update</button>
-    <button class="ui negative button" {{action 'delete' model}}>Delete</button>
-  {{else if (eq type "create")}}
-    <button class="ui positive button" {{action 'save' model}}>Save</button>
+  <div class="two fields">
+    <div class="field required">
+      <label>Price</label>
+      {{input type="number" value=model.price}}
+    </div>
+    <div class="field required">
+      <label>MRP Price</label>
+      {{input type="number" value=model.mrp_price}}
+    </div>
+  </div>
+  {{#if model.organization}}
+    <div class="field required">
+      <label>Image URL</label>
+      {{upload-image uploadComplete=(action 'uploadComplete') organization=model.organization}}
+    </div>
+    {{#if model.image_source}}
+      <div class="field" style="padding: 10px; text-align: center;">
+          <label>Uploaded Image</label>
+        <img src={{model.image_source}} style="width: 310px; height: 160px">
+      </div>
+    {{/if}}
   {{/if}}
-    <button class="ui button" {{action 'back'}}>Cancel</button>
+  <div class="field" style="text-align: center;">
+    {{#if (eq type "update")}}
+      <button class="ui positive button" {{action 'update' model}}>Update</button>
+      <button class="ui negative button" {{action 'delete' model}}>Delete</button>
+    {{else if (eq type "create")}}
+      <button class="ui positive button" {{action 'save' model}}>Save</button>
+    {{/if}}
+      <button class="ui button" {{action 'back'}}>Cancel</button>
+  </div>
 </form>
 <hr/>
 {{yield}}

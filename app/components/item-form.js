@@ -15,10 +15,6 @@ export default Component.extend({
     return this.get('store').findAll('category')
   }),
 
-  // organizations: computed(function() {
-  //   return this.get('store').findAll('organization')
-  // }),
-
   willDestroyElement() {
     if(this.get('type') == "create") {
       this.get('model').destroyRecord()
@@ -57,21 +53,20 @@ export default Component.extend({
       if(!model.get('category.id')) {
         return this.get('toast').error('Category cannot be blank');
       }
+      if(model.get('category.hasSubCategory') && !model.get('sub_category')) {
+        return this.get('toast').error('Sub Category cannot be blank');
+      }
       if(!model.get('price')) {
         return this.get('toast').error('Price cannot be blank');
       }
       if(!model.get('image_source')) {
         return this.get('toast').error('Image Source cannot be blank');
       }
-      if(!model.get('mrp_price')) {
-        return this.get('toast').error('MRP Price cannot be blank');
-      }
       model.save()
       .then(() => {
         this.get('toast').success(`Item "${model.name}" created`)
         return this.set('model', this.createRecord());
       }).catch((e) => {
-        // console.log(e)
         return this.get('toast').error(e)
       })
     },
@@ -86,21 +81,20 @@ export default Component.extend({
       if(!model.get('category.id')) {
         return this.get('toast').error('Category cannot be blank');
       }
+      if(model.get('category.hasSubCategory') && !model.get('sub_category')) {
+        return this.get('toast').error('Sub Category cannot be blank');
+      }
       if(!model.get('price')) {
         return this.get('toast').error('Price cannot be blank');
       }
       if(!model.get('image_source')) {
         return this.get('toast').error('Image Source cannot be blank');
       }
-      if(!model.get('mrp_price')) {
-        return this.get('toast').error('MRP Price cannot be blank');
-      }
       model.save()
       .then(() => {
         this.get('toast').success(`Item "${model.name}" updated`)
         return window.history.back()
       }).catch((e) => {
-        // console.log(e)
         return this.get('toast').error(e)
       })
     },
@@ -111,7 +105,6 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.name}" deleted`)
         return window.history.back()
       }).catch((e) => {
-        // console.log(e)
         return this.get('toast').error(e)
       })
     },
@@ -132,7 +125,6 @@ export default Component.extend({
           display_name: item.display_name,
           image_source: item.image_source
         }).save()
-        // .catch(e => console.log(e))
       })).then((res) => console.log(res))
     }
   }

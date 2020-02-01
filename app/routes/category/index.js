@@ -13,6 +13,7 @@ export default Route.extend({
 
   setupController(controller, model) {
     this._super(...arguments);
+    this.controllerFor('application').set('routeName', 'Categories')
     controller.set('categories', model.categories);
     controller.set('organizations', model.organizations)
     controller.set('selectedOrganization', controller.get('organizations.firstObject'))

@@ -14,6 +14,7 @@ export default Route.extend({
   setupController(controller, model) {
     this._super(...arguments);
     controller.set('packages', model.packages);
+    this.controllerFor('application').set('routeName', 'Packages')
     controller.set('organizations', model.organizations)
     controller.set('selectedOrganization', controller.get('organizations.firstObject'))
     controller.set('columns', A([

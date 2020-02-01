@@ -31,24 +31,24 @@
       {{input value=subCategory}}
     </div>
   {{/if}}
-  <div class="two fields">
-    <div class="field required">
-      <label>Logo URL</label>
-      {{input value=model.image_source}}
-    </div>
-    {{#if model.image_source}}
-      <div class="field" style="padding: 10px">
-        <img src={{model.image_source}} style="width: 40px; height: 40px">
-      </div>
-    {{/if}}
+  <div class="field required">
+    <label>Logo URL</label>
+    {{input value=model.image_source}}
   </div>
-  {{#if (eq type "update")}}
-    <button class="ui positive button" {{action 'update' model}}>Update</button>
-    <button class="ui negative button" {{action 'delete' model}}>Delete</button>
-  {{else if (eq type "create")}}
-    <button class="ui positive button" {{action 'save' model}}>Save</button>
+  {{#if model.image_source}}
+    <div class="field" style="padding: 10px; text-align-center">
+      <img src={{model.image_source}} style="width: 40px; height: 40px">
+    </div>
   {{/if}}
-    <button class="ui button" {{action 'back'}}>Cancel</button>
+  <div class="field" style="text-align: center;">
+    {{#if (eq type "update")}}
+      <button class="ui positive button" {{action 'update' model}}>Update</button>
+      <button class="ui negative button" {{action 'delete' model}}>Delete</button>
+    {{else if (eq type "create")}}
+      <button class="ui positive button" {{action 'save' model}}>Save</button>
+    {{/if}}
+      <button class="ui button" {{action 'back'}}>Cancel</button>
+  </div>
   {{!-- {{#if (eq type "create")}}
   <hr />
   <form class="ui form">

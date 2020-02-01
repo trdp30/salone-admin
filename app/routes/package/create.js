@@ -7,6 +7,7 @@ export default Route.extend({
 
   setupController(controller, model) {
     this._super(...arguments);
+    this.controllerFor('application').set('routeName', 'Create Package')
     controller.set('model', model);
   },
 });
