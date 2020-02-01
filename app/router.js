@@ -15,6 +15,10 @@ Router.map(function() {
     this.route('create');
     this.route('edit', { path: 'edit/:item_id'});
   });
+  this.route('package', function() {
+    this.route('create');
+    this.route('edit', {path: 'edit/:package_id'});
+  });
 });
 
 export default Router;

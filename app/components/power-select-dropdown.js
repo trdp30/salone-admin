@@ -21,6 +21,10 @@ export default Component.extend({
       }
     },
 
+    onchange(option) {
+      this.sendAction('customAction', option)
+    },
+
     onclose() {
       this.set('s', null);
     }

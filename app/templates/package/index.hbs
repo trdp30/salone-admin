@@ -1,0 +1,16 @@
+<div class="ui segment" style="border: none; box-shadow: none; margin: 0; padding: 0">
+  <div class="ui grid" style="margin: 0;">
+    <div class="right floated six wide column">
+      {{power-select-dropdown
+        isRemoteSearch=true
+        searchField='name'
+        optionLabel='name'
+        renderInPlace=true
+        selectedOption=selectedOrganization
+        placeHolder="Select Organization"
+        modelName="organization"}}
+    </div>
+  </div>
+</div>
+{{list-view type="package" modelName="package" model=packages columns=columns selectedOrganization=selectedOrganization organization=organization}}
+{{outlet}}
