@@ -39,9 +39,11 @@
       }}
     </div>
     {{#if model.items.length}}
+      <ol>
       {{#each model.items as |item|}}
-        {{item.name}}
+        <li>{{item.name}}</li>
       {{/each}}
+      </ol>
     {{/if}}
   {{/if}}
   <div class="two fields">
@@ -49,7 +51,7 @@
       <label>Price</label>
       {{input type="number" value=model.price}}
     </div>
-    <div class="field required">
+    <div class="field">
       <label>MRP Price</label>
       {{input type="number" value=model.mrp_price}}
     </div>

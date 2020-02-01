@@ -31,6 +31,16 @@
               {{else}}
                 <td>Loading...</td>
               {{/if}}
+            {{else if (and (eq modelName 'package') (eq column.name "Items"))}}
+              {{#if data.organization.isFulfilled}}
+                <td>
+                  <ol style="padding-left: 0;">
+                    {{#each (get-property data column.key) as |item|}}
+                      <li>{{get-property item 'name'}}</li>
+                    {{/each}}
+                  </ol>
+                </td>
+              {{/if}}
             {{else}}
               <td>{{get-property data column.key}}</td>
             {{/if}}

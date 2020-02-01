@@ -64,7 +64,7 @@ export default Component.extend({
       }
       model.save()
       .then(() => {
-        this.get('toast').success(`Item "${model.name}" created`)
+        this.get('toast').success(`Item "${model.get('name')}" created`)
         return this.set('model', this.createRecord());
       }).catch((e) => {
         return this.get('toast').error(e)
@@ -92,7 +92,7 @@ export default Component.extend({
       }
       model.save()
       .then(() => {
-        this.get('toast').success(`Item "${model.name}" updated`)
+        this.get('toast').success(`Item "${model.get('name')}" updated`)
         return window.history.back()
       }).catch((e) => {
         return this.get('toast').error(e)

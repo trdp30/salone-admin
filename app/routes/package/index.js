@@ -18,8 +18,9 @@ export default Route.extend({
     controller.set('organizations', model.organizations)
     controller.set('selectedOrganization', controller.get('organizations.firstObject'))
     controller.set('columns', A([
-      EmberObject.create({ key: "name", name: "Name", width: '30%' }),
-      EmberObject.create({ key: "description", name: "Description", width: '40%' }),
+      EmberObject.create({ key: "name", name: "Name", width: '25%' }),
+      EmberObject.create({ key: "items", name: "Items", width: '30%' }),
+      EmberObject.create({ key: "description", name: "Description", width: '30%' }),
       EmberObject.create({ key: "price", name: "Price", width: '10%' }),
       EmberObject.create({ key: "orgName", name: "Organization" }),
     ]))

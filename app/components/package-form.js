@@ -41,7 +41,7 @@ export default Component.extend({
       }
       model.save()
       .then(() => {
-        this.get('toast').success(`Item "${model.name}" created`)
+        this.get('toast').success(`Package "${model.get('name')}" created`)
         return this.set('model', this.createRecord());
       }).catch((e) => {
         // console.log(e)
@@ -67,7 +67,7 @@ export default Component.extend({
       }
       model.save()
       .then(() => {
-        this.get('toast').success(`Package "${model.name}" updated`)
+        this.get('toast').success(`Package "${model.get('name')}" updated`)
         return window.history.back()
       }).catch((e) => {
         // console.log(e)
