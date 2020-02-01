@@ -5,7 +5,7 @@
         <th>Logo</th>
       {{/if}}
       {{#each columns as |column|}}
-        <th>{{column.name}}</th>
+        <th style="width: {{column.width}};">{{column.name}}</th>
       {{/each}}
     </tr>
   </thead>

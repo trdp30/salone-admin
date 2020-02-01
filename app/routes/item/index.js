@@ -18,11 +18,11 @@ export default Route.extend({
     controller.set('organizations', model.organizations)
     controller.set('selectedOrganization', controller.get('organizations.firstObject'))
     controller.set('columns', A([
-      EmberObject.create({ key: "name", name: "Name" }),
-      EmberObject.create({ key: "category.display_name", name: "Category" }),
-      EmberObject.create({ key: "description", name: "Description" }),
-      EmberObject.create({ key: "price", name: "Price" }),
-      EmberObject.create({ key: "mrp_price", name: "MRP Price" }),
+      EmberObject.create({ key: "name", name: "Name", width: '20%' }),
+      EmberObject.create({ key: "category.display_name", name: "Category", width: '20%' }),
+      EmberObject.create({ key: "description", name: "Description", width: '30%' }),
+      EmberObject.create({ key: "price", name: "Price", width: '10%' }),
+      EmberObject.create({ key: "mrp_price", name: "MRP Price", width: '10%' }),
       EmberObject.create({ key: "orgName", name: "Organization" }),
     ]))
   }
