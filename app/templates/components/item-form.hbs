@@ -62,6 +62,16 @@
       {{input type="number" value=model.mrp_price}}
     </div>
   </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Duration (enter minutes only)</label>
+      {{input type="number" value=model.duration}}
+    </div>
+    <div class="field">
+      <label>Sort Order (Number only. Like - 1 for hair cut. It will be display in the 1st position</label>
+      {{input type="number" value=model.sort_order}}
+    </div>
+  </div>
   {{#if model.organization}}
     <div class="field required">
       <label>Image URL</label>

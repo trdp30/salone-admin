@@ -21,6 +21,7 @@ export default Route.extend({
       EmberObject.create({ key: "name", name: "Name", width: '20%' }),
       EmberObject.create({ key: "category.display_name", name: "Category", width: '20%' }),
       EmberObject.create({ key: "description", name: "Description", width: '30%' }),
+      EmberObject.create({ key: "duration", name: "Duration(mins)", width: '10%' }),
       EmberObject.create({ key: "price", name: "Price", width: '10%' }),
       EmberObject.create({ key: "mrp_price", name: "MRP Price", width: '10%' }),
       EmberObject.create({ key: "orgName", name: "Organization" }),

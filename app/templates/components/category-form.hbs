@@ -25,12 +25,18 @@
   <div class="field required">
     {{ui-checkbox class="toggle" label="Has Sub Category?" checked=model.hasSubCategory onChange=(action (mut model.hasSubCategory))}}
   </div>
-  {{#if model.hasSubCategory}}
-    <div class="field required">
-      <label>Enter Sub Categories (coma(,) separated)</label>
-      {{input value=subCategory}}
+  <div class="two fields">
+    <div class="field">
+      <label>Sort Order (Number only. Like - 1 for hair cut. It will be display in the 1st position</label>
+      {{input type="number" value=model.sort_order}}
     </div>
-  {{/if}}
+    {{#if model.hasSubCategory}}
+      <div class="field required">
+        <label>Enter Sub Categories (coma(,) separated)</label>
+        {{input value=subCategory}}
+      </div>
+    {{/if}}
+  </div>
   <div class="field required">
     <label>Logo URL</label>
     {{input value=model.image_source}}

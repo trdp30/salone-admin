@@ -16,6 +16,8 @@ export default DS.Model.extend({
   mrp_price           : DS.attr('number'),
   sub_category        : DS.attr('string'),
   file                : DS.belongsTo('file'),
+  duration            : DS.attr('number'),
+  sort_order          : DS.attr('number'),
 
   orgName: computed('organization.isFulfilled', function() {
     if(this.get('organization')) {

@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import _ from 'lodash';
 
 export default Component.extend({
   model: A(),
@@ -20,7 +21,8 @@ export default Component.extend({
       return this.get('store').query(this.get('modelName'), { organization_id: this.get('selectedOrganization.id') })
       .then((response) => {
         this.get('model').clear()
-        this.get('model').pushObjects(response.map(data => data))
+        let values = response.map(data => data)
+        this.get('model').pushObjects(_.sortBy(values, ['user', 'age']))
       }).then(() => {
         this.set('isLoading', false)
       }).catch((e) => this.get('toast').error(e))

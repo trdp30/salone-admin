@@ -16,6 +16,7 @@ export default DS.Model.extend({
   organization      : DS.belongsTo('organization'),
   hasSubCategory    : DS.attr('boolean', { defaultValue: false }),
   sub_categories    : DS.attr(),
+  sort_order        : DS.attr('number'),
 
   orgName: computed('organization.isFulfilled', function() {
     if(this.get('organization')) {
