@@ -22,7 +22,7 @@ export default Component.extend({
       .then((response) => {
         this.get('model').clear()
         let values = response.map(data => data)
-        this.get('model').pushObjects(_.sortBy(values, ['user', 'age']))
+        this.get('model').pushObjects(values)
       }).then(() => {
         this.set('isLoading', false)
       }).catch((e) => this.get('toast').error(e))
