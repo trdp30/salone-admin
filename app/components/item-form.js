@@ -67,7 +67,13 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.get('name')}" created`)
         return this.set('model', this.createRecord());
       }).catch((e) => {
-        return this.get('toast').error(e)
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
       })
     },
 
@@ -95,7 +101,13 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.get('name')}" updated`)
         return window.history.back()
       }).catch((e) => {
-        return this.get('toast').error(e)
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
       })
     },
 
@@ -105,7 +117,13 @@ export default Component.extend({
         this.get('toast').success(`Item "${model.name}" deleted`)
         return window.history.back()
       }).catch((e) => {
-        return this.get('toast').error(e)
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
       })
     },
 

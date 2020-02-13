@@ -45,7 +45,13 @@ export default Component.extend({
         return this.set('model', this.createRecord());
       }).catch((e) => {
         // console.log(e)
-        return this.get('toast').error(e)
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
       })
     },
 
@@ -71,7 +77,13 @@ export default Component.extend({
         return window.history.back()
       }).catch((e) => {
         // console.log(e)
-        return this.get('toast').error(e)
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
       })
     },
 
@@ -82,7 +94,13 @@ export default Component.extend({
         return window.history.back()
       }).catch((e) => {
         // console.log(e)
-        return this.get('toast').error(e)
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
       })
     },
 
