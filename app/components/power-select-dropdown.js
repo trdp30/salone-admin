@@ -6,8 +6,8 @@ import _ from 'lodash';
 export default Component.extend({
   store: service(),
 
-  listSource: computed('s', 'modelName', 'organization_id', function() {
-    let query = _.omitBy(this.getProperties(['s', 'organization_id']), _.isNil);
+  listSource: computed('name', 'modelName', 'organization_id', function() {
+    let query = _.omitBy(this.getProperties(['name', 'organization_id']), _.isNil);
     _.merge(query, this.get('modelQuery') || {});
     return this.get('store').query(this.get('modelName'), query)
   }),
@@ -15,9 +15,9 @@ export default Component.extend({
   actions: {
     searchAction(searchText) {
       if(_.trim(searchText)) {
-        this.set('s', searchText);
+        this.set('name', searchText);
       } else {
-        this.set('s', null);
+        this.set('name', null);
       }
     },
 
