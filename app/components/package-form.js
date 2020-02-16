@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -36,15 +36,17 @@ export default Component.extend({
       if(!model.get('price')) {
         return this.get('toast').error('Price cannot be blank');
       }
-      if(!model.get('image_source')) {
-        return this.get('toast').error('Image Source cannot be blank');
+      if(!model.get('poster_image_source')) {
+        return this.get('toast').error('Poster Image cannot be blank');
+      }
+      if(!model.get('background_image_source')) {
+        return this.get('toast').error('Background Image cannot be blank');
       }
       model.save()
       .then(() => {
         this.get('toast').success(`Package "${model.get('name')}" created`)
         return this.set('model', this.createRecord());
       }).catch((e) => {
-        // console.log(e)
         if(e.errors && e.errors.length) {
           e.errors.forEach(error => {
             this.get('toast').error(error.title, error.details)
@@ -68,15 +70,17 @@ export default Component.extend({
       if(!model.get('price')) {
         return this.get('toast').error('Price cannot be blank');
       }
-      if(!model.get('image_source')) {
-        return this.get('toast').error('Image Source cannot be blank');
+      if(!model.get('poster_image_source')) {
+        return this.get('toast').error('Poster Image cannot be blank');
+      }
+      if(!model.get('background_image_source')) {
+        return this.get('toast').error('Background Image cannot be blank');
       }
       model.save()
       .then(() => {
         this.get('toast').success(`Package "${model.get('name')}" updated`)
         return window.history.back()
       }).catch((e) => {
-        // console.log(e)
         if(e.errors && e.errors.length) {
           e.errors.forEach(error => {
             this.get('toast').error(error.title, error.details)
@@ -104,6 +108,13 @@ export default Component.extend({
       })
     },
 
+    removePackageItem(item) {
+      if(this.get('model.items.length')) {
+        let itemObject = this.get('model.items').findBy('id', get(item, 'id'))
+        this.get('model.items').removeObject(itemObject)
+      }
+    },
+
     back() {
       window.history.back()
     },
@@ -124,9 +135,14 @@ export default Component.extend({
       }
     },
 
-    uploadComplete(file) {
-      this.set('model.image_source', file.get('file_source'))
-      this.set('model.file', file)
+    backgroundUploadComplete(file) {
+      this.set('model.background_image_source', file.get('file_source'))
+      this.set('model.background_file', file)
+    },
+
+    posterUploadComplete(file) {
+      this.set('model.poster_image_source', file.get('file_source'))
+      this.set('model.poster_file', file)
     }
   }
 });

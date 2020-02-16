@@ -17,8 +17,12 @@ export default DS.JSONSerializer.extend({
   },
 
   serializeAttribute(snapshot, json, key, attributes) {
-    if (snapshot.record.get('isNew') || snapshot.changedAttributes()[key]) {
+    if(snapshot.modelName == 'package') {
       this._super(snapshot, json, key, attributes);
+    } else {
+      if (snapshot.record.get('isNew') || snapshot.changedAttributes()[key]) {
+        this._super(snapshot, json, key, attributes);
+      }
     }
   },
 

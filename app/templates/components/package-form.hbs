@@ -41,7 +41,10 @@
     {{#if model.items.length}}
       <ol>
       {{#each model.items as |item|}}
-        <li>{{item.name}}</li>
+        <li>
+          {{item.name}} 
+          <span {{action 'removePackageItem' item}} style="cursor: pointer; padding: 5px">x</span>
+        </li>
       {{/each}}
       </ol>
     {{/if}}
@@ -58,14 +61,28 @@
   </div>
   {{#if model.organization}}
     <div class="field required">
-      <label>Image URL</label>
-      {{upload-image uploadComplete=(action 'uploadComplete') organization=model.organization}}
+      <label>Upload Poster Image</label>
+      {{upload-image uploadComplete=(action 'posterUploadComplete') organization=model.organization}}
     </div>
-    {{#if model.image_source}}
-    <div class="field" style="padding: 10px; text-align: center;">
-      <label>Uploaded Image</label>
-      <img src={{model.image_source}} style="width: 460px; height: 259px">
+    <div class="field required">
+      <label>Upload Background Image</label>
+      {{upload-image uploadComplete=(action 'backgroundUploadComplete') organization=model.organization}}
     </div>
+    {{#if (or model.poster_image_source model.background_image_source)}}
+      <div class="two fields">
+        {{#if model.poster_image_source}}
+          <div class="field" style="padding: 10px; text-align: center;">
+            <label>Poster Image</label>
+            <img src={{model.poster_image_source}} style="width: 460px; height: 259px">
+          </div>
+        {{/if}}
+        {{#if model.background_image_source}}
+          <div class="field" style="padding: 10px; text-align: center;">
+            <label>Background Image</label>
+            <img src={{model.background_image_source}} style="width: 360px; height: 640px">
+          </div>
+        {{/if}}
+      </div>
     {{/if}}
   {{/if}}
   <div class="field" style="text-align: center;">

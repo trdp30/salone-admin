@@ -7,5 +7,7 @@ export default DS.Model.extend({
   price           : DS.attr('string'),
   image_source    : DS.attr('string'),
   file            : DS.belongsTo('file'),
-  organization    : DS.belongsTo('organization')
+  organization    : DS.belongsTo('organization'),
+  poster_image_source: DS.attr('string'),
+  background_image_source: DS.attr('string')
 });
