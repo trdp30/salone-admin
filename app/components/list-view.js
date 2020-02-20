@@ -25,7 +25,15 @@ export default Component.extend({
         this.get('model').pushObjects(values)
       }).then(() => {
         this.set('isLoading', false)
-      }).catch((e) => this.get('toast').error(e))
+      }).catch((e) => {
+        if(e.errors && e.errors.length) {
+          e.errors.forEach(error => {
+            this.get('toast').error(error.title, error.details)
+          });
+        } else {
+          return this.get('toast').error(e);
+        }
+      })
     }
   }.observes('selectedOrganization', 'selectedOrganization.id'),
 });
