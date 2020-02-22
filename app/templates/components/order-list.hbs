@@ -1,0 +1,74 @@
+<table class="ui red table">
+  <thead>
+    <tr>
+      {{#each columns as |column|}}
+        <th style="width: {{column.width}};">{{column.name}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  {{#if model.length}}
+    <tbody>
+      {{#each model as |data|}}
+        {{#link-to 'order.details' data.id tagName="tr"}}
+          {{#each columns as |column index|}}
+            {{#if (eq column.key "cartItems")}}
+              <td style="padding-left: : 10px;">
+                <ol style="padding-left: 10px;">
+                  {{#each data.cartItems as |cartItem|}}
+                    {{#if cartItem.is_package}}
+                      <li>{{get-property cartItem.package 'name'}}</li>
+                    {{else}}
+                      <li>{{get-property cartItem.item 'name'}}</li>
+                    {{/if}}
+                  {{/each}}
+                </ol>
+              </td>
+            {{else if (eq column.key 'appointment')}}
+              <td style="padding-left: : 10px;">
+                  From: {{moment-format data.appointment.from "HH:MM A, DD/MM/YYYY"}}
+              </td>
+            {{else if (eq column.key 'created_at')}}
+              <td style="padding-left: : 10px;">{{moment-format (get-property data column.key) "HH:MM A, DD/MM/YYYY"}}</td>
+            {{else if (eq column.key 'formatedStatus')}}
+              <td style="padding-left: : 10px;">
+                <div style="color: {{get-property data 'formatedStatus.color'}};">
+                  {{get-property data 'formatedStatus.name'}}
+                </div>
+              </td>
+            {{else if (eq column.key 'user.name')}}
+              <td style="padding-left: : 10px;">
+                {{#if data.user.isFulfilled}}
+                  <p>{{data.user.name}}</p>
+                  <p>{{data.user.phone}},{{data.user.alt_phone}}</p>
+                {{else}}
+                  Loading..
+                {{/if}}
+              </td>
+            {{else if (eq column.key 'address.formatedAddress')}}
+              <td style="padding-left: : 10px;">
+                {{#if data.address.isFulfilled}}
+                  {{data.address.formatedAddress}}
+                {{else if data.address.isRejected}}
+                  Not found
+                {{else}}
+                  Loading..
+                {{/if}}
+              </td>
+            {{else}}
+              <td style="padding-left: : 10px;">{{get-property data column.key}}</td>
+            {{/if}}
+          {{/each}}
+        {{/link-to}}
+      {{/each}}
+    </tbody>
+  {{else if isLoading}}
+    <div style="height: calc(100vh - 100px); text-align: center; width: 100%">
+      Loading...
+    </div>
+  {{else}}
+    <div style="height: calc(100vh - 100px);text-align: center; width: 100%">
+      No data found
+    </div>
+  {{/if}}
+</table>
+{{yield}}

@@ -1,0 +1,116 @@
+<div class="ui form">
+  <div class="three fields">
+    <div class="field">
+      <label>Customer Name:</label>
+      <div class="item">{{model.user.name}}</div>
+    </div>
+    <div class="field">
+      <label>Phone:</label>
+      <div class="item">{{model.user.phone}}</div>
+    </div>
+    <div class="field">
+      <label>Alternate Phone:</label>
+      {{#if model.user.alt_phone}}
+        <div class="item">{{model.user.alt_phone}}</div>
+      {{else}}
+        <div class="item">Not Avialable</div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="three fields">
+    <div class="field">
+      <label>Items:</label>
+      <div class="items">
+        {{#each model.cartItems as |cartItem|}}
+          <ol>
+            {{#if cartItem.is_package}}
+              <li>Package: {{cartItem.package.name}}</li>
+            {{else}}
+              <li>{{cartItem.item.name}}</li>
+            {{/if}}
+          </ol>
+        {{/each}}
+      </div>
+    </div>
+    <div class="field">
+      <label>Price:</label>
+      <div class="item">{{model.order_total}}</div>
+    </div>
+    <div class="field">
+      <label>Total Paid:</label>
+      {{#if (and (eq model.status 5) model.hasDirtyAttributes)}}
+        {{input type="number" value=model.total_paid}}
+      {{else}}
+        <div class="item">{{model.total_paid}}</div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Scpecial Instruction:</label>
+      {{#if model.special_instruction}}
+        <div class="item">{{model.special_instruction}}</div>
+      {{else}}
+        <div class="item">Not provided</div>
+      {{/if}}
+    </div>
+    <div class="field">
+      <label>Preferred Instruction:</label>
+      {{#if model.preferred_beautician}}
+        <div class="item">{{model.preferred_beautician}}</div>
+      {{else}}
+        <div class="item">Not provided</div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="field">
+    <label>Address:</label>
+    <div class="item">
+      {{model.address.formatedAddress}} {{model.address.address.localAddress}} {{model.address.address.landMark}}
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Selected Appointmnet Slot:</label>
+      <div class="item">
+        <p>From: {{moment-format model.appoinment.from "HH:MM A, DD/MM/YYYY"}}</p>
+        <p>To: {{moment-format model.appoinment.to "HH:MM A, DD/MM/YYYY"}}</p>
+      </div>
+    </div>
+    <div class="field">
+      <label>Appointment Status:</label>
+      <div class="item" style="color: {{model.formatedStatus.color}};">{{model.formatedStatus.name}}</div>
+    </div>
+  </div>
+  {{#if (or (eq model.status 1) (eq model.status 2) (eq model.status 4) (and (eq model.status 3) model.hasDirtyAttributes) (and (eq model.status 5) model.hasDirtyAttributes))}}
+    <div class="two fields">
+      <div class="field">
+        <label>Assign Beautician:</label>
+        <div class="item">
+          {{input value=model.assigned_beautician}}
+        </div>
+      </div>
+      <div class="field">
+        <label>Confirm Slot:</label>
+        <div class="item">
+          <p>From: {{ui-calendar minDate=minDate date=model.confirm_from onChange=(action (mut model.confirm_from)) placeholder="Select date and time"}}</p>
+          <p>To: {{ui-calendar minDate=minDate date=model.confirm_to onChange=(action (mut model.confirm_to)) placeholder="Select date and time"}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Change Status:</label>{{log enableConfirm}}
+      <div class="item">
+        <div class="ui green button {{unless enableConfirm 'disabled'}}" {{action 'changeStatus' 2}}>Confirm</div>
+        <div class="ui blue button {{unless enableInProgress 'disabled'}}" {{action 'changeStatus' 4}}>In Progress</div>
+        <div class="ui red button {{unless enableCancel 'disabled'}}" {{action 'changeStatus' 3}}>Cancel</div>
+        <div class="ui blue button {{unless enableComplete 'disabled'}}" {{action 'changeStatus' 5}}>Appointment Complete</div>
+      </div>
+    </div>
+    <div class="field" style="text-align: center;">
+      <div class="ui green button" {{action 'save'}}>Save</div>
+      <div class="ui button" {{action 'back'}}>Cancel</div>
+    </div>
+  {{/if}}
+</div>
+{{yield}}
