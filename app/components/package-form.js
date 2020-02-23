@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed, get } from '@ember/object';
+import EmberObject, { computed, get } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -39,8 +39,8 @@ export default Component.extend({
       if(!model.get('poster_image_source')) {
         return this.get('toast').error('Poster Image cannot be blank');
       }
-      if(!model.get('background_image_source')) {
-        return this.get('toast').error('Background Image cannot be blank');
+      if(!model.get('background_color')) {
+        return this.get('toast').error('Background is required')
       }
       model.save()
       .then(() => {
@@ -73,8 +73,8 @@ export default Component.extend({
       if(!model.get('poster_image_source')) {
         return this.get('toast').error('Poster Image cannot be blank');
       }
-      if(!model.get('background_image_source')) {
-        return this.get('toast').error('Background Image cannot be blank');
+      if(!model.get('background_color')) {
+        return this.get('toast').error('Background is required')
       }
       model.save()
       .then(() => {
@@ -121,11 +121,12 @@ export default Component.extend({
 
     addItem(option) {
       let items = this.get('model.items')
-      const item = {
+      const item = EmberObject.create({
         id: option.get('id'),
         name: option.get('name'),
-        description: option.get('description')
-      }
+        description: option.get('description'),
+        image_source: null
+      })
       if(items && !items.findBy('id', option.get('id'))) {
         this.get('model.items').pushObject(item)
       } else if(_.isNil(items)) {
@@ -138,6 +139,11 @@ export default Component.extend({
     backgroundUploadComplete(file) {
       this.set('model.background_image_source', file.get('file_source'))
       this.set('model.background_file', file)
+    },
+
+    itemUploadComplete(item, file) {
+      item.set('image_source', file.get('file_source'))
+      item.set('file', file)
     },
 
     posterUploadComplete(file) {

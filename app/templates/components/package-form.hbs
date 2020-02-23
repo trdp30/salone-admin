@@ -22,39 +22,47 @@
       {{input value=model.description}}
     </div>
   </div>
-  {{#if model.organization}}
-    <div class="field required">
-      <label>Items</label>
-      {{power-select-dropdown
-        searchEnabled=true
-        isRemoteSearch=true
-        searchField='name'
-        optionLabel='name'
-        renderInPlace=true
-        customAction=(action 'addItem')
-        isCustomAction=true
-        organization_id=model.organization.id
-        placeHolder="Select Items"
-        modelName="item"
-      }}
-    </div>
-    {{#if model.items.length}}
-      <ol>
-      {{#each model.items as |item|}}
-        <li>
-          {{item.name}} 
-          <span {{action 'removePackageItem' item}} style="cursor: pointer; padding: 5px">x</span>
-        </li>
-      {{/each}}
-      </ol>
+  <div class="two fields">
+    {{#if model.organization}}
+      <div class="field required">
+        <label>Items</label>
+        {{power-select-dropdown
+          searchEnabled=true
+          isRemoteSearch=true
+          searchField='name'
+          optionLabel='name'
+          renderInPlace=true
+          customAction=(action 'addItem')
+          isCustomAction=true
+          organization_id=model.organization.id
+          placeHolder="Select Items"
+          modelName="item"
+        }}
+        {{#if model.items.length}}
+          <ol>
+          {{#each model.items as |item|}}
+            <li>
+              {{item.name}} 
+              <span {{action 'removePackageItem' item}} style="cursor: pointer; padding: 5px">x</span>
+            </li>
+          {{/each}}
+          </ol>
+        {{/if}}
+      </div>
     {{/if}}
-  {{/if}}
+    <div class="field">
+      <label>Background Color</label>
+      <div class="item">
+        {{input value=model.background_color}}
+      </div>
+    </div>
+  </div>
   <div class="two fields">
     <div class="field required">
       <label>Price</label>
       {{input type="number" value=model.price}}
     </div>
-    <div class="field">
+    <div class="field required">
       <label>MRP Price</label>
       {{input type="number" value=model.mrp_price}}
     </div>
@@ -64,10 +72,12 @@
       <label>Upload Poster Image</label>
       {{upload-image uploadComplete=(action 'posterUploadComplete') organization=model.organization}}
     </div>
-    <div class="field required">
-      <label>Upload Background Image</label>
-      {{upload-image uploadComplete=(action 'backgroundUploadComplete') organization=model.organization}}
-    </div>
+    {{#each model.items as |item|}}
+      <div class="field required">
+        <label>{{item.name}}'s Image</label>
+        {{upload-image uploadComplete=(action 'itemUploadComplete' item) organization=model.organization}}
+      </div>
+    {{/each}}
     {{#if (or model.poster_image_source model.background_image_source)}}
       <div class="two fields">
         {{#if model.poster_image_source}}
@@ -76,12 +86,14 @@
             <img src={{model.poster_image_source}} style="width: 460px; height: 259px">
           </div>
         {{/if}}
-        {{#if model.background_image_source}}
-          <div class="field" style="padding: 10px; text-align: center;">
-            <label>Background Image</label>
-            <img src={{model.background_image_source}} style="width: 360px; height: 640px">
-          </div>
-        {{/if}}
+        {{#each model.items as |item|}}
+          {{#if item.image_source}}
+            <div class="field" style="padding: 10px; text-align: center;">
+              <label>{{item.name}}'s Image</label>
+              <img src={{item.image_source}} style="width: 360px; height: 360px">
+            </div>
+          {{/if}}
+        {{/each}}
       </div>
     {{/if}}
   {{/if}}
