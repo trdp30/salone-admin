@@ -13,7 +13,7 @@ export default Route.extend({
 
   setupController(controller, model) {
     this._super(...arguments);
-    this.controllerFor('application').set('routeName', 'Orders')
+    this.controllerFor('application').set('routeName', 'Appointments')
     controller.set('organizations', model.organizations)
     controller.set('orders', model.orders)
     controller.set('selectedOrganization', controller.get('organizations.firstObject'))

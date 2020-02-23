@@ -1,4 +1,4 @@
-<div class="ui form">
+<div class="ui form" style="height: calc(100vh - 150px); overflow-y: auto; overflow-x: hidden">
   <div class="three fields">
     <div class="field">
       <label>Customer Name:</label>
@@ -98,18 +98,49 @@
         </div>
       </div>
     </div>
-    <div class="field">
-      <label>Change Status:</label>{{log enableConfirm}}
-      <div class="item">
-        <div class="ui green button {{unless enableConfirm 'disabled'}}" {{action 'changeStatus' 2}}>Confirm</div>
-        <div class="ui blue button {{unless enableInProgress 'disabled'}}" {{action 'changeStatus' 4}}>In Progress</div>
-        <div class="ui red button {{unless enableCancel 'disabled'}}" {{action 'changeStatus' 3}}>Cancel</div>
-        <div class="ui blue button {{unless enableComplete 'disabled'}}" {{action 'changeStatus' 5}}>Appointment Complete</div>
+    <div class="field required">
+      <label>Change Status:</label>
+    </div>
+    <div class="ui stackable grid">
+      <div class="row" style="padding-top: 10px !important">
+        <div class="column" style="min-width: 109px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
+          <button class="ui green button {{unless enableConfirm 'disabled'}}" {{action 'changeStatus' 2}}>Confirm</button>
+        </div>
+        <div class="column" style="min-width: 131px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
+          <button class="ui blue button {{unless enableInProgress 'disabled'}}" {{action 'changeStatus' 4}}>In Progress</button>
+        </div>
+        <div class="column" style="min-width: 99px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
+          <button class="ui red button {{unless enableCancel 'disabled'}}" {{action 'changeStatus' 3}}>Cancel</button>
+        </div>
+        <div class="column" style="min-width: 207px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
+          <button class="ui blue button {{unless enableComplete 'disabled'}}" {{action 'changeStatus' 5}}>Appointment Complete</button>
+        </div>
       </div>
     </div>
-    <div class="field" style="text-align: center;">
+    <div class="field" style="text-align: center; margin-top: 20px">
       <div class="ui green button" {{action 'save'}}>Save</div>
       <div class="ui button" {{action 'back'}}>Cancel</div>
+    </div>
+  {{/if}}
+  {{#if (and (or (eq model.status 3) (eq model.status 5)) (not model.hasDirtyAttributes))}}
+    <div class="two fields">
+      <div class="field">
+        <label>Assign Beautician:</label>
+        <div class="item">
+          {{#if model.assigned_beautician}}
+            {{model.assigned_beautician}}
+          {{else}}
+            Not Provided
+          {{/if}}
+        </div>
+      </div>
+      <div class="field">
+        <label>Confirm Slot:</label>
+        <div class="item">
+          <p>From: {{moment-format model.confirm_from "HH:MM A, DD/MM/YYYY"}}</p>
+          <p>To: {{moment-format model.model.confirm_to "HH:MM A, DD/MM/YYYY"}}</p>
+        </div>
+      </div>
     </div>
   {{/if}}
 </div>

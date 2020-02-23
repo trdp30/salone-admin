@@ -37,7 +37,7 @@ export default Component.extend({
         return this.get('toast').error('Please enter the amount that has paid')
       }
       if(this.get('model.status') == 2 && (!this.get('model.confirm_from') || !this.get('model.confirm_to'))) {
-        return this.get('toast').error('Please enter the amount that has paid')
+        return this.get('toast').error('Please enter the Confirm slot')
       }
       return this.get('model').save()
       .then(() => {
