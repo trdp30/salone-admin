@@ -65,16 +65,22 @@
   </div>
   <div class="field">
     <label>Address:</label>
-    <div class="item">
-      {{model.address.formatedAddress}} {{model.address.address.localAddress}} {{model.address.address.landMark}}
-    </div>
+    {{#if model.address.address.place_url}}
+      <a class="item" href={{model.address.address.place_url}} target="blank">
+        {{model.address.formatedAddress}} {{model.address.address.localAddress}} {{model.address.address.landMark}}
+      </a>
+    {{else}}
+      <div class="item">
+        {{model.address.formatedAddress}} {{model.address.address.localAddress}} {{model.address.address.landMark}}
+      </div>
+    {{/if}}
   </div>
   <div class="two fields">
     <div class="field">
       <label>Selected Appointmnet Slot:</label>
-      <div class="item">
-        <p>From: {{moment-format model.appoinment.from "HH:MM A, DD/MM/YYYY"}}</p>
-        <p>To: {{moment-format model.appoinment.to "HH:MM A, DD/MM/YYYY"}}</p>
+      <div class="item">{{log model.appointment.from}}
+        <p>From: {{moment-format model.appointment.from "HH:MM A, DD/MM/YYYY"}}</p>
+        <p>To: {{moment-format model.appointment.from "HH:MM A, DD/MM/YYYY"}}</p>
       </div>
     </div>
     <div class="field">
@@ -106,13 +112,13 @@
         <div class="column" style="min-width: 109px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
           <button class="ui green button {{unless enableConfirm 'disabled'}}" {{action 'changeStatus' 2}}>Confirm</button>
         </div>
-        <div class="column" style="min-width: 131px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
+        <div class="column" style="min-width: 137px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
           <button class="ui blue button {{unless enableInProgress 'disabled'}}" {{action 'changeStatus' 4}}>In Progress</button>
         </div>
         <div class="column" style="min-width: 99px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
           <button class="ui red button {{unless enableCancel 'disabled'}}" {{action 'changeStatus' 3}}>Cancel</button>
         </div>
-        <div class="column" style="min-width: 207px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
+        <div class="column" style="min-width: 215px; padding-right: 0 !important; padding-top: 0 !important; padding-bottom: 5px !important; text-align: center">
           <button class="ui blue button {{unless enableComplete 'disabled'}}" {{action 'changeStatus' 5}}>Appointment Complete</button>
         </div>
       </div>
