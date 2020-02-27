@@ -1,9 +1,9 @@
-<div class="ui red table" style="max-width: calc(100vw - 314px); height: calc(100vh - 200px); overflow: auto;">
+<div class="ui red table desktop-list">
   <table class="ui table" style="border: none; width: {{totalWidth}}px">
     <thead>
       <tr>
         {{#each columns as |column|}}
-          <th style="width: {{column.width}}px; position: sticky; top: 0; z-index: 3;">{{column.name}}</th>
+          <th class="table-head" style="width: {{column.width}}px">{{column.name}}</th>
         {{/each}}
       </tr>
     </thead>

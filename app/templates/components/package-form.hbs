@@ -50,12 +50,6 @@
         {{/if}}
       </div>
     {{/if}}
-    <div class="field required">
-      <label>Background Color</label>
-      <div class="item">
-        {{input value=model.background_color}}
-      </div>
-    </div>
   </div>
   <div class="two fields">
     <div class="field required">
@@ -72,28 +66,10 @@
       <label>Upload Poster Image</label>
       {{upload-image uploadComplete=(action 'posterUploadComplete') organization=model.organization}}
     </div>
-    {{#each model.items as |item|}}
-      <div class="field required">
-        <label>{{item.name}}'s Image</label>
-        {{upload-image uploadComplete=(action 'itemUploadComplete' item) organization=model.organization}}
-      </div>
-    {{/each}}
-    {{#if (or model.poster_image_source model.background_image_source)}}
-      <div class="two fields">
-        {{#if model.poster_image_source}}
-          <div class="field" style="padding: 10px; text-align: center;">
-            <label>Poster Image</label>
-            <img src={{model.poster_image_source}} style="width: 460px; height: 259px">
-          </div>
-        {{/if}}
-        {{#each model.items as |item|}}
-          {{#if item.image_source}}
-            <div class="field" style="padding: 10px; text-align: center;">
-              <label>{{item.name}}'s Image</label>
-              <img src={{item.image_source}} style="width: 360px; height: 360px">
-            </div>
-          {{/if}}
-        {{/each}}
+    {{#if model.poster_image_source}}
+      <div class="field" style="padding: 10px; text-align: center;">
+        <label>Poster Image</label>
+        <img src={{model.poster_image_source}} style="width: 460px; height: 259px">
       </div>
     {{/if}}
   {{/if}}

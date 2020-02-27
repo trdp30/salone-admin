@@ -6,12 +6,34 @@
   display: none !important;
 }
 
+.table-head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+.desktop-list {
+  max-width: ~"calc(100vw - 314px)";
+  height: ~"calc(100vh - 200px)";
+  overflow: auto;
+}
+
 @media only screen and (max-width: 767px) {
   .desktop-menu {
     display: none !important;
   }
+  .table-head {
+    position: relative;
+    top: 0;
+    z-index: 3;
+  }
   .mobile-menu {
     display: block !important;
   }
+  .desktop-list {
+    max-width: 100%;
+    height: ~"calc(100vh - 200px)";
+    overflow: auto;
+  }
+  
 }
 

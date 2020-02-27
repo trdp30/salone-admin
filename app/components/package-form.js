@@ -39,9 +39,6 @@ export default Component.extend({
       if(!model.get('poster_image_source')) {
         return this.get('toast').error('Poster Image cannot be blank');
       }
-      if(!model.get('background_color')) {
-        return this.get('toast').error('Background color is required')
-      }
       model.save()
       .then(() => {
         this.get('toast').success(`Package "${model.get('name')}" created`)
@@ -72,9 +69,6 @@ export default Component.extend({
       }
       if(!model.get('poster_image_source')) {
         return this.get('toast').error('Poster Image cannot be blank');
-      }
-      if(!model.get('background_color')) {
-        return this.get('toast').error('Background color is required')
       }
       model.save()
       .then(() => {
