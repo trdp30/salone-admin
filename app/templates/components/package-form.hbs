@@ -63,13 +63,13 @@
   </div>
   {{#if model.organization}}
     <div class="field required">
-      <label>Upload Poster Image</label>
+      <label>Upload Poster Image (width: 420px; height: 259px)</label>
       {{upload-image uploadComplete=(action 'posterUploadComplete') organization=model.organization}}
     </div>
     {{#if model.poster_image_source}}
       <div class="field" style="padding: 10px; text-align: center;">
         <label>Poster Image</label>
-        <img src={{model.poster_image_source}} style="width: 460px; height: 259px">
+        <img src={{model.poster_image_source}} style="width: 420px; height: 259px">
       </div>
     {{/if}}
   {{/if}}
