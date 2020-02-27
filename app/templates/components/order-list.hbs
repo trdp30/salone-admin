@@ -26,10 +26,10 @@
                 </td>
               {{else if (eq column.key 'appointment')}}
                 <td style="padding-left: : 10px;">
-                    From: {{moment-format data.appointment.from "HH:MM A, DD/MM/YYYY"}}
+                    {{moment-format data.appointment.from "hh:mm A, DD/MM/YYYY"}}
                 </td>
               {{else if (eq column.key 'created_at')}}
-                <td style="padding-left: : 10px;">{{moment-format (get-property data column.key) "HH:MM A, DD/MM/YYYY"}}</td>
+                <td style="padding-left: : 10px;">{{moment-format (get-property data column.key) "hh:mm A, DD/MM/YYYY"}}</td>
               {{else if (eq column.key 'formatedStatus')}}
                 <td style="padding-left: : 10px;">
                   <div style="color: {{get-property data 'formatedStatus.color'}};">

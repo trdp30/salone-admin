@@ -78,9 +78,9 @@
   <div class="two fields">
     <div class="field">
       <label>Selected Appointmnet Slot:</label>
-      <div class="item">{{log model.appointment.from}}
-        <p>From: {{moment-format model.appointment.from "HH:MM A, DD/MM/YYYY"}}</p>
-        <p>To: {{moment-format model.appointment.to "HH:MM A, DD/MM/YYYY"}}</p>
+      <div class="item">
+        <p>From: {{moment-format model.appointment.from "hh:mm A, DD/MM/YYYY"}}</p>
+        <p>To: {{moment-format model.appointment.to "hh:mm A, DD/MM/YYYY"}}</p>
       </div>
     </div>
     <div class="field">
@@ -143,8 +143,8 @@
       <div class="field">
         <label>Confirm Slot:</label>
         <div class="item">
-          <p>From: {{moment-format model.confirm_from "HH:MM A, DD/MM/YYYY"}}</p>
-          <p>To: {{moment-format model.model.confirm_to "HH:MM A, DD/MM/YYYY"}}</p>
+          <p>From: {{moment-format model.confirm_from "hh:mm A, DD/MM/YYYY"}}</p>
+          <p>To: {{moment-format model.model.confirm_to "hh:mm A, DD/MM/YYYY"}}</p>
         </div>
       </div>
     </div>
