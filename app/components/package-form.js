@@ -119,7 +119,7 @@ export default Component.extend({
         id: option.get('id'),
         name: option.get('name'),
         description: option.get('description'),
-        image_source: null
+        image_source: option.get('image_source')
       })
       if(items && !items.findBy('id', option.get('id'))) {
         this.get('model.items').pushObject(item)
