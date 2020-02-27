@@ -40,7 +40,7 @@ export default Component.extend({
         return this.get('toast').error('Poster Image cannot be blank');
       }
       if(!model.get('background_color')) {
-        return this.get('toast').error('Background is required')
+        return this.get('toast').error('Background color is required')
       }
       model.save()
       .then(() => {
@@ -74,7 +74,7 @@ export default Component.extend({
         return this.get('toast').error('Poster Image cannot be blank');
       }
       if(!model.get('background_color')) {
-        return this.get('toast').error('Background is required')
+        return this.get('toast').error('Background color is required')
       }
       model.save()
       .then(() => {
