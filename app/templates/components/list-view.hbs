@@ -34,7 +34,7 @@
             {{else if (and (eq modelName 'package') (eq column.name "Items"))}}
               {{#if data.organization.isFulfilled}}
                 <td>
-                  <ol style="padding-left: 0;">
+                  <ol style="padding-left: 13px;">
                     {{#each (get-property data column.key) as |item|}}
                       <li>{{get-property item 'name'}}</li>
                     {{/each}}
