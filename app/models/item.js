@@ -14,7 +14,7 @@ export default DS.Model.extend({
   updated_by          : DS.attr('number'),
   organization        : DS.belongsTo('organization'),
   mrp_price           : DS.attr('number'),
-  sub_category        : DS.attr('string'),
+  sub_category        : DS.attr(),
   file                : DS.belongsTo('file'),
   duration            : DS.attr('number'),
   sort_order          : DS.attr('number'),
