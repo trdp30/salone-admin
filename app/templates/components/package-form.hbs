@@ -42,7 +42,7 @@
           <ol>
           {{#each model.items as |item|}}
             <li>
-              {{item.name}} 
+              {{item.name}}
               <span {{action 'removePackageItem' item}} style="cursor: pointer; padding: 5px">x</span>
             </li>
           {{/each}}
@@ -50,6 +50,10 @@
         {{/if}}
       </div>
     {{/if}}
+    <div class="field">
+      <label>Sort Order (Number only. Like - 1 for hair cut. It will be display in the 1st position</label>
+      {{input type="number" value=model.sort_order}}
+    </div>
   </div>
   <div class="two fields">
     <div class="field required">

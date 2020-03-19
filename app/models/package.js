@@ -9,5 +9,6 @@ export default DS.Model.extend({
   file                    : DS.belongsTo('file'),
   organization            : DS.belongsTo('organization'),
   poster_image_source     : DS.attr('string'),
-  description             : DS.attr('string')
+  description             : DS.attr('string'),
+  sort_order              : DS.attr('number')
 });
