@@ -28,6 +28,7 @@ export default DS.Model.extend({
   address                   : DS.belongsTo('address'),
   confirm_from              : DS.attr('date'),
   confirm_to                : DS.attr('date'),
+  device                    : DS.attr(),
 
   formatedStatus: computed('status', function() {
     return status.findBy('id', this.get('status'))
