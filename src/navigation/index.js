@@ -56,7 +56,8 @@ const ContainerRoute = () => {
   return (
     <div>
       <NavBar />
-      <Route path="/categories" exact component={Categories} />
+      <div className="container">
+        <Route path="/categories" exact component={Categories} />
         <Route path="/category/create" exact component={CategoryCreate} />
         <Route path="/category/:category_id/details" exact component={CategoryDetails} />
         <Route path="/category/:category_id/edit" exact component={CategoryEdit} />
@@ -71,10 +72,11 @@ const ContainerRoute = () => {
         <Route path="/users" exact component={Users} />
         <Route path="/user/:user_id/edit" exact component={UpdateUser} />
         <Route path="/user/:user_id/change-role" exact component={ChangeRole} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/logout" exact component={Logout} />
-        <Route path="/register" exact component={Register} />
         <Route path="/dashboard" exact component={DashBoard}/>
+      </div>
+      <Route path="/login" exact component={Login} />
+      <Route path="/logout" exact component={Logout} />
+      <Route path="/register" exact component={Register} />
     </div>
   )
 }
