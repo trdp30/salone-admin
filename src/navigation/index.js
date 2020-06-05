@@ -28,7 +28,10 @@ export default function Navigation() {
     <BrowserRouter>
       <Switch>
         <ContainerRoute />
-        <Route path="/" component={DashBoard}/>
+        <Route path="/login" exact component={Login} />
+        <Route path="/logout" exact component={Logout} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/" exact component={DashBoard}/>
         <Route path="*" render={() => <div>No route found</div>}/>
       </Switch>
     </BrowserRouter>
@@ -36,23 +39,6 @@ export default function Navigation() {
 }
 
 const ContainerRoute = () => {
-  // return (
-  //   <div className="ui container height-view-port">
-  //     {/* <Logo /> */}
-  //     <div className="ui grid height-view-port">
-  //       <div className="sixteen wide column margin-top-hundred padding-no-top">
-  //         <Switch>
-  //           {/* <Route path="/assessment/post-section" exact component={PostSection} /> */}
-  //           {/* <Route path="/assessment/init" exact component={LandingPage} /> */}
-  //           {/* <Route path="/assessment/:assessment_id" component={Passage}/> */}
-  //           {/* <Route path="/error" component={ErrorView} /> */}
-  //           <Route path="/" exact/>
-  //           {/* <Route path="*" render={() => <ErrorView error={{message: "No Route Found."}} />}/> */}
-  //         </Switch>
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
   return (
     <div>
       <NavBar />
@@ -74,9 +60,6 @@ const ContainerRoute = () => {
         <Route path="/user/:user_id/change-role" exact component={ChangeRole} />
         <Route path="/dashboard" exact component={DashBoard}/>
       </div>
-      <Route path="/login" exact component={Login} />
-      <Route path="/logout" exact component={Logout} />
-      <Route path="/register" exact component={Register} />
     </div>
   )
 }
