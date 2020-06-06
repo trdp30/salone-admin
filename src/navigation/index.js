@@ -21,45 +21,36 @@ import Login from '../pages/login';
 import Logout from '../pages/logout';
 import Register from '../pages/register';
 import DashBoard from '../pages/dashboard';
-import NavBar from '../components/nav-bar';
+import AppContainer from '../components/app-container';
 
 export default function Navigation() {
   return (
     <BrowserRouter>
-      <Switch>
-        <ContainerRoute />
-        <Route path="/login" exact component={Login} />
-        <Route path="/logout" exact component={Logout} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/" exact component={DashBoard}/>
-        <Route path="*" render={() => <div>No route found</div>}/>
-      </Switch>
+      <AppContainer>
+        <Switch>
+          <Route path="/login" exact component={Login} />
+          <Route path="/logout" exact component={Logout} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/categories" exact component={Categories} />
+          <Route path="/category/create" exact component={CategoryCreate} />
+          <Route path="/category/:category_id/details" exact component={CategoryDetails} />
+          <Route path="/category/:category_id/edit" exact component={CategoryEdit} />
+          <Route path="/items" exact component={Items} />
+          <Route path="/item/create" exact component={ItemCreate} />
+          <Route path="/item/:item_id/details" exact component={ItemDetails} />
+          <Route path="/item/:item_id/edit" exact component={ItemEdit} />
+          <Route path="/orders" exact component={Orders} />
+          <Route path="/order/create" exact component={OrderCreate} />
+          <Route path="/order/:order_id/details" exact component={OrderDetails} />
+          <Route path="/order/:order_id/edit" exact component={OrderEdit} />
+          <Route path="/users" exact component={Users} />
+          <Route path="/user/:user_id/edit" exact component={UpdateUser} />
+          <Route path="/user/:user_id/change-role" exact component={ChangeRole} />
+          <Route path="/dashboard" exact component={DashBoard}/>
+          <Route path="/" exact component={DashBoard}/>
+          <Route path="*" render={() => <div>No route found</div>}/>
+        </Switch>
+      </AppContainer>
     </BrowserRouter>
-  )
-}
-
-const ContainerRoute = () => {
-  return (
-    <div>
-      <NavBar />
-      <div className="container">
-        <Route path="/categories" exact component={Categories} />
-        <Route path="/category/create" exact component={CategoryCreate} />
-        <Route path="/category/:category_id/details" exact component={CategoryDetails} />
-        <Route path="/category/:category_id/edit" exact component={CategoryEdit} />
-        <Route path="/items" exact component={Items} />
-        <Route path="/item/create" exact component={ItemCreate} />
-        <Route path="/item/:item_id/details" exact component={ItemDetails} />
-        <Route path="/item/:item_id/edit" exact component={ItemEdit} />
-        <Route path="/orders" exact component={Orders} />
-        <Route path="/order/create" exact component={OrderCreate} />
-        <Route path="/order/:order_id/details" exact component={OrderDetails} />
-        <Route path="/order/:order_id/edit" exact component={OrderEdit} />
-        <Route path="/users" exact component={Users} />
-        <Route path="/user/:user_id/edit" exact component={UpdateUser} />
-        <Route path="/user/:user_id/change-role" exact component={ChangeRole} />
-        <Route path="/dashboard" exact component={DashBoard}/>
-      </div>
-    </div>
   )
 }
