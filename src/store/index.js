@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import AppStateReducer from './reducers/app-state-reducer';
 import ConnectionReducer from './reducers/connectivity-reducer';
+import UserReducer from './reducers/user.reducer';
 
 const reducers =  combineReducers({
   appState: AppStateReducer,
   networkAvailability: ConnectionReducer,
+  user: UserReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

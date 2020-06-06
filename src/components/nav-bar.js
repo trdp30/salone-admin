@@ -1,8 +1,25 @@
 import React from 'react';
 import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
+import { logout } from '../store/actions/user.action';
+import { connect } from 'react-redux'
 
-function NavBar() {
+import { userIsNotAuthenticated, userIsAuthenticated } from '../config/auth';
+
+// const LoginLink = userIsNotAuthenticated(() => (
+//   <Nav.Item>
+//     <LinkContainer to="/login">
+//       <Nav.Link eventKey="/login">
+//         Login
+//       </Nav.Link>
+//     </LinkContainer>
+//   </Nav.Item>
+// ))
+const LogoutLink = userIsAuthenticated(({ logout }) => (
+  <Nav.Item><div className="nav-link" onClick={logout}>Logout</div></Nav.Item>
+))
+
+function NavBar({ user, logout }) {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -61,10 +78,16 @@ function NavBar() {
               <LinkContainer to="/user/1/change-role">
                 <NavDropdown.Item eventKey="/user/1/change-role">Change Role</NavDropdown.Item>
               </LinkContainer>
+            </NavDropdown>
+            <LogoutLink logout={logout}/>
+            {/* <NavDropdown title="You" id="account-dropdown" alignRight>
+              <LinkContainer to="/user/1/change-role">
+                <NavDropdown.Item eventKey="/user/1/change-role">Change Role</NavDropdown.Item>
+              </LinkContainer>
               <LinkContainer to="/logout">
                 <NavDropdown.Item eventKey="/logout">Logout</NavDropdown.Item>
               </LinkContainer>
-            </NavDropdown>
+            </NavDropdown> */}
             {/* <Nav.Item>
               <LinkContainer to="/login">
                 <Nav.Link eventKey="/login">
@@ -86,4 +109,8 @@ function NavBar() {
   )
 }
 
-export default NavBar;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, { logout })(NavBar);
