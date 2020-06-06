@@ -8,7 +8,6 @@ const unAuthenticatedRoute = [
 ]
 
 function AppContainer(props) {
-  console.log(props)
   const { location } = props
   const [ showContainer, toggleContainer ] = useState(false)
 
