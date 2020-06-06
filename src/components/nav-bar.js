@@ -5,6 +5,7 @@ import { logout } from '../store/actions/user.action';
 import { connect } from 'react-redux'
 
 import { userIsNotAuthenticated, userIsAuthenticated } from '../config/auth';
+import { invalidate } from '../store/actions/session.action';
 
 // const LoginLink = userIsNotAuthenticated(() => (
 //   <Nav.Item>
@@ -110,7 +111,12 @@ function NavBar({ user, logout }) {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  session: state.session
 })
 
-export default connect(mapStateToProps, { logout })(NavBar);
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(invalidate())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

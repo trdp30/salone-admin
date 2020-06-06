@@ -1,19 +1,24 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../store/actions/user.action';
+import { requestOtp } from '../store/actions/register.action';
+import { authenticated } from '../store/actions/session.action';
 
 function Login(props) {
   const [ email, setEmail ] = useState('')
   const [ otp, setOtp ] = useState('')
+  const { session, submitUserName, login } = props
+
+  console.log(session)
 
   const onSubmit = (e) => {
     e.preventDefault()
-    props.login(
-      {
-        email: email,
-        otp: otp
-      }
-    )
+    if(!email) {
+      return alert('email cannot be empty')
+    }
+    if(!otp) {
+      return alert('otp cannot be empty')
+    }
+    login(email, otp)
   }
 
   const setValues = (e) => {
@@ -25,6 +30,12 @@ function Login(props) {
     }
   }
 
+  const generateOtp = () => {
+    if(!email) {
+      return alert('email cannot be empty')
+    }
+    submitUserName(email)
+  }
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
@@ -50,8 +61,18 @@ function Login(props) {
           onChange={setValues}
         />
       </div>
+      <button type="button" className="btn btn-primary" onClick={() => generateOtp()}>Generate Otp</button>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   )
 }
-export default connect(null, { login })(Login)
+
+const mapStateToProps = state => ({
+  session: state.session,
+})
+
+const mapDispatchToProps = dispatch => ({
+  submitUserName: (username) => dispatch(requestOtp(username)),
+  login: (username, verification_code) => dispatch(authenticated(username, verification_code))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -4,11 +4,15 @@ import thunk from 'redux-thunk';
 import AppStateReducer from './reducers/app-state-reducer';
 import ConnectionReducer from './reducers/connectivity-reducer';
 import UserReducer from './reducers/user.reducer';
+import SessionReducer from './reducers/session.reducer';
+import registrationReducer from './reducers/register.reducer';
 
 const reducers =  combineReducers({
   appState: AppStateReducer,
   networkAvailability: ConnectionReducer,
-  user: UserReducer
+  user: UserReducer,
+  session: SessionReducer,
+  register: registrationReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

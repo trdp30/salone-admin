@@ -26,6 +26,10 @@ export const initializeAxiosHeader = (token) => {
   }
 }
 
+export const removeAxiosHeader = () => {
+  return delete axiosInstance.defaults.headers.common["token"];
+}
+
 //GET Calls
 export function findAll(type) {
   let url = `/${type}`;

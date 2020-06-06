@@ -7,8 +7,8 @@ import Loading from '../components/loading';
 const locationHelper = locationHelperBuilder({})
 
 const userIsAuthenticatedDefaults = {
-  authenticatedSelector: state => state.user.data !== null,
-  authenticatingSelector: state => state.user.isLoading,
+  authenticatedSelector: state => state.session.isAuthencated,
+  authenticatingSelector: state => state.session.isAuthenticating,
   wrapperDisplayName: 'UserIsAuthenticated'
 }
 
@@ -20,17 +20,17 @@ export const userIsAuthenticatedRedir = connectedRouterRedirect({
   redirectPath: '/login'
 })
 
-export const userIsAdminRedir = connectedRouterRedirect({
-  redirectPath: '/',
-  allowRedirectBack: false,
-  authenticatedSelector: state => state.user.data !== null && state.user.data.isAdmin,
-  predicate: user => user.isAdmin,
-  wrapperDisplayName: 'UserIsAdmin'
-})
+// export const userIsAdminRedir = connectedRouterRedirect({
+//   redirectPath: '/',
+//   allowRedirectBack: false,
+//   authenticatedSelector: state => state.session.isAuthencated && state.user.data.isAdmin,
+//   predicate: user => user.isAdmin,
+//   wrapperDisplayName: 'UserIsAdmin'
+// })
 
 const userIsNotAuthenticatedDefaults = {
   // Want to redirect the user when they are done loading and authenticated
-  authenticatedSelector: state => state.user.data === null && state.user.isLoading === false,
+  authenticatedSelector: state => !state.session.isAuthencated && state.session.isAuthenticating === false,
   wrapperDisplayName: 'UserIsNotAuthenticated'
 }
 
