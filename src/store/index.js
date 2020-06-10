@@ -6,13 +6,15 @@ import ConnectionReducer from './reducers/connectivity-reducer';
 import UserReducer from './reducers/user.reducer';
 import SessionReducer from './reducers/session.reducer';
 import registrationReducer from './reducers/register.reducer';
+import categoryReducer from './reducers/category.reducer';
 
 const reducers =  combineReducers({
   appState: AppStateReducer,
   networkAvailability: ConnectionReducer,
   user: UserReducer,
   session: SessionReducer,
-  register: registrationReducer
+  register: registrationReducer,
+  category: categoryReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
