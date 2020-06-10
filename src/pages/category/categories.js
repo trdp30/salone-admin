@@ -9,11 +9,9 @@ function Categories(props) {
     props.getCategories()
   }, [])
 
-  console.log(props.categoryModel.data)
-
   return (
     <ol>
-      {props.categoryModel && props.categoryModel.data && props.categoryModel.data.result && props.categoryModel.data.result.length &&
+      {!props.categoryModel.isLoading && props.categoryModel.data.result && props.categoryModel.data.result.length &&
         props.categoryModel.data.result.map((categoryID) => (
           <li key={categoryID}>
             <Link to={`/category/${categoryID}/details`}>

@@ -4,7 +4,7 @@ import { find } from 'lodash';
 
 const initialState = {
   isLoading: false,
-  data: [],
+  data: {},
   error: null
 }
 

@@ -6,3 +6,4 @@ export const categorySchema = new schema.Entity('category', {
   items: itemsSchema
 })
 export const catergoriesSchema = new schema.Array(categorySchema)
+itemSchema.define({category_id: categorySchema})

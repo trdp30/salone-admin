@@ -1,6 +1,7 @@
 // import * as Sentry from '@sentry/browser';
+import { normalize } from 'normalizr';
 
-export const CatchReduxError = (type, error) => {
+export const catchReduxError = (type, error) => {
   if(!type) {
     throw new Error('"type" cannot be null')
   } else if(!error) {
@@ -20,16 +21,26 @@ export const CatchReduxError = (type, error) => {
   }
 }
 
-export const ActionInitiated = (type) => {
+export const actionInitiated = (type) => {
   if(!type) {
-    return CatchReduxError()
+    return catchReduxError()
   }
   return { type: type }
 }
 
-export const ActionSucceed = (type, payload) => {
+export const normalizedData = (data, type, schema) => {
+  return function(dispatch) {
+    if(data && data.data) {
+      return dispatch(actionSucceed(type, normalize(data.data, schema)))
+    } else {
+      return dispatch(actionSucceed(type, normalize(data, schema)))
+    }
+  }
+}
+
+export const actionSucceed = (type, payload) => {
   if(!type || !payload) {
-    return CatchReduxError(type, 'Either "type" or "payload" is undefined')
+    return catchReduxError(type, 'Either "type" or "payload" is undefined')
   }
   if(payload && payload.data) {
     return {

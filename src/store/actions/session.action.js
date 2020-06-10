@@ -1,4 +1,4 @@
-import { CatchReduxError, ActionInitiated } from "./general.action";
+import { catchReduxError, actionInitiated } from "./general.action";
 import { SESSION_AUTHENTICATING, SESSION_AUTHENTICATED, SESSION_UNAUTHENTICATED } from "../action-type";
 import { createRecord, initializeAxiosHeader, removeAxiosHeader } from "../async-actions";
 
@@ -19,7 +19,7 @@ export function authenticated(username, verification_code) {
       if(!verification_code) {
         throw new Error('"verification_code" cannot be null')
       }
-      dispatch(ActionInitiated(SESSION_AUTHENTICATING))
+      dispatch(actionInitiated(SESSION_AUTHENTICATING))
       const response = await createRecord('/oauth', {
         email: username,
         verification_code: verification_code,
@@ -41,7 +41,7 @@ export function authenticated(username, verification_code) {
         throw new Error("Invalid response")
       }
     } catch (e) {
-      dispatch(CatchReduxError('SESSION_AUTHENTICATION_FAILED', e))
+      dispatch(catchReduxError('SESSION_AUTHENTICATION_FAILED', e))
     }
   }
 }
