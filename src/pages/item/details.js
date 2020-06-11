@@ -8,7 +8,7 @@ function ItemDetails(props) {
 
   useEffect(() => {
     if(!itemModel.isLoading && !itemModel.error && !itemModel.data.result) {
-      getItemById(match.params.category_id)
+      getItemById(match.params.item_id)
     }
   })
 
@@ -17,12 +17,10 @@ function ItemDetails(props) {
   )
 }
 
-const mapStateToProps = (state, { match } ) => {
-  return {
-    itemModel: state.item,
-    currentItem: getRecord(state.item.data.entities, 'item', match.params.item_id)
-  }
-}
+const mapStateToProps = (state, { match } ) => ({
+  itemModel: state.item,
+  currentItem: getRecord(state.item.data.entities, 'item', match.params.item_id)
+})
 
 const mapDispatchToProps = dispatch => ({
   getItemById: (id) => dispatch(findItem(id))
