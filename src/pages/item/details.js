@@ -19,7 +19,7 @@ function ItemDetails(props) {
 
 const mapStateToProps = (state, { match } ) => ({
   itemModel: state.item,
-  currentItem: getRecord(state.item.data.entities, 'item', match.params.item_id)
+  currentItem: getRecord(state.item.data.entities, 'items', match.params.item_id)
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -14,7 +14,7 @@ function Items(props) {
         props.itemModel.data.result.map((itemId) => (
           <li key={itemId}>
             <Link to={`/item/${itemId}/details`}>
-              {props.itemModel.data.entities.item[itemId].name}
+              {props.itemModel.data.entities.items[itemId].name}
             </Link>
           </li>
         ))}

@@ -15,7 +15,7 @@ function Categories(props) {
     //     props.categoryModel.data.result.map((categoryID) => (
     //       <li key={categoryID}>
     //         <Link to={`/category/${categoryID}/details`}>
-    //           {props.categoryModel.data.entities.category[categoryID].name}
+    //           {props.categoryModel.data.entities.categories[categoryID].name}
     //         </Link>
     //       </li>
     //     ))}
@@ -38,11 +38,11 @@ function Categories(props) {
             props.categoryModel.data.result.map((categoryID) => (
               <tr>
                 <td>
-                  <img src={props.categoryModel.data.entities.category[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
+                  <img src={props.categoryModel.data.entities.categories[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
                 </td>
-                <td>{props.categoryModel.data.entities.category[categoryID].display_name}</td>
-                <td>{props.categoryModel.data.entities.category[categoryID].name}</td>
-                <td>{props.categoryModel.data.entities.category[categoryID].image_source}</td>
+                <td>{props.categoryModel.data.entities.categories[categoryID].display_name}</td>
+                <td>{props.categoryModel.data.entities.categories[categoryID].name}</td>
+                <td>{props.categoryModel.data.entities.categories[categoryID].image_source}</td>
                 <td>
                 <Link to={`/category/${categoryID}/details`}>
                   <button type="button" class="btn btn-info btn-sm">View Item</button>

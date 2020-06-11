@@ -19,7 +19,7 @@ function CategoryDetails(props) {
 
 const mapStateToProps = (state, { match } ) => ({
   categoryModel: state.category,
-  currentCategory: getRecord(state.category.data.entities, 'category', match.params.category_id)
+  currentCategory: getRecord(state.category.data.entities, 'categories', match.params.category_id)
 })
 
 const mapDispatchToProps = dispatch => ({
