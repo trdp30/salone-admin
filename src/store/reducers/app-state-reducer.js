@@ -1,4 +1,4 @@
-import { ADD_ITEM_TO_APP_STATE, ADD_BULK_TO_APP_STATE, REMOVE_ITEM_FROM_APP_STATE, CLEAR_APP_STATE } from '../action-type';
+import { ADD_ITEM_TO_APP_STATE, ADD_BULK_TO_APP_STATE, APP_STATE_REMOVE_ITEM, CLEAR_APP_STATE } from '../action-type';
 import { produce } from 'immer';
 import _ from 'lodash';
 
@@ -14,7 +14,7 @@ export default function AppStateReducer(state={}, action) {
         data: action.data
       }
     }
-    case REMOVE_ITEM_FROM_APP_STATE: {
+    case APP_STATE_REMOVE_ITEM: {
       return produce(state, draftState => {
         let { key } = action
         if (_.isNil(key)) {

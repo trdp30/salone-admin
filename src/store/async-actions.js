@@ -18,7 +18,7 @@ const createErrorObject = (error, message="Something went wrong") => {
 export const initializeAxiosHeader = (token) => {
   try {
     if(token) {
-      axiosInstance.defaults.headers.common['token'] = `${token}`;
+      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
   } 
   catch (e) {
@@ -27,7 +27,7 @@ export const initializeAxiosHeader = (token) => {
 }
 
 export const removeAxiosHeader = () => {
-  return delete axiosInstance.defaults.headers.common["token"];
+  return delete axiosInstance.defaults.headers.common["Authorization"];
 }
 
 //GET Calls

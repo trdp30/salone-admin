@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import { ADD_BULK_TO_APP_STATE, APPEND_ITEM_TO_APP_STATE, REMOVE_ITEM_FROM_APP_STATE, CLEAR_APP_STATE } from '../action-type';
+import { ADD_BULK_TO_APP_STATE, APP_STATE_APPEND_ITEM, APP_STATE_REMOVE_ITEM, CLEAR_APP_STATE } from '../action-type';
 import localforage from 'localforage';
 import { findIndex } from 'lodash';
 
@@ -41,7 +41,7 @@ export const addBulk = (object) => {
 
 export const removeItem = (key=null, value=null, removeBy=null) => {
   return {
-    type: REMOVE_ITEM_FROM_APP_STATE,
+    type: APP_STATE_REMOVE_ITEM,
     key: key,
     value: value, 
     removeBy: removeBy
@@ -59,7 +59,7 @@ export const clearState = () => {
 
 export const append = (key, value) => {
   return {
-    type: APPEND_ITEM_TO_APP_STATE,
+    type: APP_STATE_APPEND_ITEM,
     key: key,
     value: value
   }
