@@ -1,5 +1,6 @@
 // import * as Sentry from '@sentry/browser';
 import { normalize } from 'normalizr';
+import { invalidate } from './session.action';
 
 export const catchReduxError = (type, error) => {
   if(!type) {
@@ -9,9 +10,28 @@ export const catchReduxError = (type, error) => {
   }
   // Sentry.captureException(error)
   if(error && error.response && error.response.data) {
-    return {
-      type: type,
-      error: error.response.status >= 500 ? { message: "Something went worng" } : error.response.data
+    switch(error.response.status) {
+      case 401: {
+        return function(dispatch) {
+          dispatch(invalidate())
+          return dispatch({
+            type: type,
+            error: error.response.data.message
+          })
+        }
+      }
+      case 500: {
+        return {
+          type: type,
+          error: { message: "Something went worng" }
+        }
+      }
+      default: {
+        return {
+          type: type,
+          error: error.response.data
+        }
+      }
     }
   } else {
     return {
@@ -28,10 +48,23 @@ export const actionInitiated = (type) => {
   return { type: type }
 }
 
-export const normalizedData = (data, type, schema) => {
+export const normalizedData = ({data, modelName, type, schema, relationShips}) => {
   return function(dispatch) {
     if(data && data.data) {
-      return dispatch(actionSucceed(type, normalize(data.data, schema)))
+      let payload = normalize(data.data, schema)
+      if(relationShips && relationShips.length) {
+        relationShips.forEach((relationShip) => {
+          if(payload.entities[relationShip.modelName]) {
+            dispatch(actionSucceed(relationShip.actionType, {
+              entities: {
+                [relationShip.modelName]: payload.entities[relationShip.modelName],
+              },
+              result: Object.keys(payload.entities[relationShip.modelName]).map(id => parseInt(id))
+            }))
+          }
+        })
+      }
+      return dispatch(actionSucceed(type, payload))
     } else {
       return dispatch(actionSucceed(type, normalize(data, schema)))
     }

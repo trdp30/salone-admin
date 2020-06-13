@@ -4,9 +4,12 @@ import { fetchCategories } from '../../store/actions/category.action';
 import { Link } from 'react-router-dom';
 
 function Categories(props) {
+  const { categoryModel } = props
 
   useEffect(() => {
-    props.getCategories()
+    if(!categoryModel.request.isLoading && !categoryModel.request.error) {
+      props.getCategories()
+    }
   }, [])
 
   return (
@@ -15,7 +18,7 @@ function Categories(props) {
     //     props.categoryModel.data.result.map((categoryID) => (
     //       <li key={categoryID}>
     //         <Link to={`/category/${categoryID}/details`}>
-    //           {props.categoryModel.data.entities.categories[categoryID].name}
+    //           {props.categoryModel.data.byId[categoryID].name}
     //         </Link>
     //       </li>
     //     ))}
@@ -34,15 +37,15 @@ function Categories(props) {
             </tr>
           </thead>
           <tbody>
-          {!props.categoryModel.isLoading && props.categoryModel.data.result && props.categoryModel.data.result.length &&
-            props.categoryModel.data.result.map((categoryID) => (
+          {categoryModel.data.allIds && categoryModel.data.allIds.length &&
+            categoryModel.data.allIds.map((categoryID) => (
               <tr>
                 <td>
-                  <img src={props.categoryModel.data.entities.categories[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
+                  <img src={categoryModel.data.byId[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
                 </td>
-                <td>{props.categoryModel.data.entities.categories[categoryID].display_name}</td>
-                <td>{props.categoryModel.data.entities.categories[categoryID].name}</td>
-                <td>{props.categoryModel.data.entities.categories[categoryID].image_source}</td>
+                <td>{categoryModel.data.byId[categoryID].display_name}</td>
+                <td>{categoryModel.data.byId[categoryID].name}</td>
+                <td>{categoryModel.data.byId[categoryID].image_source}</td>
                 <td>
                 <Link to={`/category/${categoryID}/details`}>
                   <button type="button" class="btn btn-info btn-sm">View Item</button>

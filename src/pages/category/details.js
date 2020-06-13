@@ -7,10 +7,10 @@ function CategoryDetails(props) {
   const { currentCategory, categoryModel, getCategoryById, match } = props
 
   useEffect(() => {
-    if(!categoryModel.isLoading && !categoryModel.error && !categoryModel.data.result) {
+    if(!categoryModel.request.isLoading && !categoryModel.request.error && categoryModel.data.allIds && !categoryModel.data.allIds.length) {
       getCategoryById(match.params.category_id)
     }
-  })
+  }, [])
 
   return (
     <div>{currentCategory.name}</div>
@@ -19,7 +19,7 @@ function CategoryDetails(props) {
 
 const mapStateToProps = (state, { match } ) => ({
   categoryModel: state.category,
-  currentCategory: getRecord(state.category.data.entities, 'categories', match.params.category_id)
+  currentCategory: getRecord(state.category.data, match.params.category_id)
 })
 
 const mapDispatchToProps = dispatch => ({

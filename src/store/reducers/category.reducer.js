@@ -1,14 +1,14 @@
 import { CATEGORY_REQUEST_INITIATED, CATEGORY_REQUEST_SUCCEED, CATEGORY_REQUEST_FAILED } from '../action-type';
 import produce from "immer"
 import { find } from 'lodash';
+import { combineReducers } from 'redux';
 
 const initialState = {
   isLoading: false,
-  data: {},
   error: null
 }
 
-const categoryReducers = (state = initialState, action) => {
+const request = (state=initialState, action) => {
   switch(action.type) {
     case CATEGORY_REQUEST_INITIATED : {
       return {
@@ -18,20 +18,11 @@ const categoryReducers = (state = initialState, action) => {
       }
     }
     case CATEGORY_REQUEST_SUCCEED : {
-      return produce(state, draftState => {
-        // if(draftState.data && draftState.data.length) {
-          // if(action.payload && Array.isArray(action.payload) && action.payload.length) {
-          //   action.payload.forEach(data => {
-          //     if(find(data))
-              
-          //   });
-          // }
-        // } else {
-          draftState.isLoading = false
-          draftState.error = null
-          draftState.data = action.payload
-        // }
-      })
+      return {
+        ...state,
+        isLoading: false,
+        error: null
+      }
     }
     case CATEGORY_REQUEST_FAILED : {
       return {
@@ -44,4 +35,43 @@ const categoryReducers = (state = initialState, action) => {
   }
 }
 
-export default categoryReducers;
+const byId = (state={}, action) => {
+  switch(action.type) {
+    case CATEGORY_REQUEST_SUCCEED : {
+      return {
+        ...state,
+        ...action.payload.entities.categories
+      }
+    }
+    default : return state;
+  }
+}
+
+const allIds = (state=[], action) => {
+  switch(action.type) {
+    case CATEGORY_REQUEST_SUCCEED : {
+      if(action.payload.result && Array.isArray(action.payload.result)) {
+        if(action.payload.result.length) {
+          return action.payload.result
+        } else {
+          return action.payload.result
+        }
+      } else {
+        return [action.payload.result]
+      }
+    }
+    default : return state;
+  }
+}
+
+const categoryReducer = combineReducers({
+  byId,
+  allIds
+})
+
+const model = combineReducers({
+  request,
+  data: categoryReducer
+})
+
+export default model;
