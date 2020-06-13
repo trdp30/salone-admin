@@ -8,7 +8,6 @@ import SessionReducer from './reducers/session.reducer';
 import registrationReducer from './reducers/register.reducer';
 import categoryReducer from './reducers/category.reducer';
 import itemReducers from './reducers/item.reducer';
-import masterReducer from './reducers/general.reducer';
 
 const reducers =  combineReducers({
   appState: AppStateReducer,
@@ -17,8 +16,7 @@ const reducers =  combineReducers({
   session: SessionReducer,
   register: registrationReducer,
   category: categoryReducer,
-  item: itemReducers,
-  masterData: masterReducer
+  item: itemReducers
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

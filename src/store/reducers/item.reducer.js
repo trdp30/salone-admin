@@ -1,6 +1,6 @@
 import { ITEM_REQUEST_INITIATED, ITEM_REQUEST_SUCCEED, ITEM_REQUEST_FAILED } from '../action-type';
-import produce from 'immer';
 import { combineReducers } from 'redux';
+import { getAllIds, getById } from './extract_id.reducer';
 
 const initialState = {
   isLoading: false,
@@ -34,43 +34,14 @@ const request = (state=initialState, action) => {
   }
 }
 
-const byId = (state={}, action) => {
-  switch(action.type) {
-    case ITEM_REQUEST_SUCCEED : {
-      return {
-        ...state,
-        ...action.payload.entities.items
-      }
-    }
-    default : return state;
-  }
-}
-
-const allIds = (state=[], action) => {
-  switch(action.type) {
-    case ITEM_REQUEST_SUCCEED : {
-      if(action.payload.result && Array.isArray(action.payload.result)) {
-        if(action.payload.result.length) {
-          return action.payload.result
-        } else {
-          return action.payload.result
-        }
-      } else {
-        return [action.payload.result]
-      }
-    }
-    default : return state;
-  }
-}
-
-const categoryReducer = combineReducers({
-  byId,
-  allIds
+const rootReducer = (state, action) => ({
+  byId: getById(state, action),
+  allIds: getAllIds(state, action)
 })
 
-const model = combineReducers({
+const itemReducer = combineReducers({
   request,
-  data: categoryReducer
+  data: rootReducer
 })
 
-export default model;
+export default itemReducer;

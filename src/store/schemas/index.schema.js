@@ -1,6 +1,6 @@
 import { schema } from 'normalizr';
 
-const userProcessStrategy = (value, parent, key) => {
+const itemProcessStrategy = (value, parent, key) => {
   switch (key) {
     case 'items':
       return { ...value, category: parent.id };
@@ -11,7 +11,7 @@ const userProcessStrategy = (value, parent, key) => {
   }
 };
 
-export const itemSchema = new schema.Entity('items', {}, { processStrategy: userProcessStrategy });
+export const itemSchema = new schema.Entity('items', {}, { processStrategy: itemProcessStrategy });
 export const categorySchema = new schema.Entity('categories', {
   items: [itemSchema]
 })
