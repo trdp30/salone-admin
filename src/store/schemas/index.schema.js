@@ -22,3 +22,9 @@ export const packageSchema = new schema.Entity('packages', {
 export const itemArraySchema = new schema.Array(itemSchema)
 export const catergoryArraySchema = new schema.Array(categorySchema)
 export const packageArraySchema =  new schema.Array(packageSchema)
+
+export const orderSchema = new schema.Entity('orders');
+export const orderArraySchema =  new schema.Array(orderSchema);
+
+export const userSchema = new schema.Entity('users');
+export const userArraySchema = new schema.Array(userSchema)

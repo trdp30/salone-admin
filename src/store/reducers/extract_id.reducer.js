@@ -1,43 +1,27 @@
-import { ITEM_REQUEST_SUCCEED, CATEGORY_REQUEST_SUCCEED } from '../action-type';
-
-const collecctId = (state, payload) => {
-  if(payload.result && Array.isArray(payload.result)) {
-    if(payload.result.length) {
-      return payload.result
+export const getAllIds = (modelName) => {
+  return (state=[], action) => {
+    if(action && action.type && typeof(action.type) == 'string' && action.type.toLowerCase().includes(modelName) && action.payload && action.payload.result && action.payload.entities && action.payload.entities[modelName]) {
+      if(Array.isArray(action.payload.result) && action.payload.result.length) {
+        return action.payload.result
+      } else {
+        return [action.payload.result]
+      }
     } else {
-      return payload.result
+      return state
     }
-  } else {
-    return [payload.result]
   }
 }
 
-export const getAllIds = (state, action) => {
-  switch(action.type) {
-    case ITEM_REQUEST_SUCCEED: {
-      return collecctId(state, action.payload)
-    }
-    case CATEGORY_REQUEST_SUCCEED: {
-      return collecctId(state, action.payload)
-    }
-    default : return state;
-  }
-}
-
-export const getById = (state={}, action) => {
-  switch(action.type) {
-    case ITEM_REQUEST_SUCCEED : {
+export const getById = (modelName) => {
+  return (state={}, action) => {
+    const { payload } = action
+    if(action && action.type && typeof(action.type) == 'string' && action.type.toLowerCase().includes(modelName) && payload && payload.entities && payload.entities[modelName] && payload.result) {
       return {
         ...state,
-        ...action.payload.entities.items
+        ...payload.entities[modelName]
       }
+    } else {
+      return state;
     }
-    case CATEGORY_REQUEST_SUCCEED: {
-      return {
-        ...state,
-        ...action.payload.entities.categories
-      }
-    }
-    default : return state;
   }
 }

@@ -17,7 +17,7 @@ function Items(props) {
         props.itemModel.data.allIds.map((itemId) => (
           <li key={itemId}>
             <Link to={`/item/${itemId}/details`}>
-              {props.itemModel.data.byId[itemId].name}
+              {props.itemModel.data.byId[itemId] && props.itemModel.data.byId[itemId].name}
             </Link>
           </li>
         ))}

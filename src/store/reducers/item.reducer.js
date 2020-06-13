@@ -1,4 +1,4 @@
-import { ITEM_REQUEST_INITIATED, ITEM_REQUEST_SUCCEED, ITEM_REQUEST_FAILED } from '../action-type';
+import { ITEMS_REQUEST_INITIATED, ITEMS_REQUEST_SUCCEED, ITEMS_REQUEST_FAILED } from '../action-type';
 import { combineReducers } from 'redux';
 import { getAllIds, getById } from './extract_id.reducer';
 
@@ -9,21 +9,21 @@ const initialState = {
 
 const request = (state=initialState, action) => {
   switch(action.type) {
-    case ITEM_REQUEST_INITIATED: {
+    case ITEMS_REQUEST_INITIATED: {
       return {
         ...state,
         isLoading: true,
         error: null
       }
     }
-    case ITEM_REQUEST_SUCCEED: {
+    case ITEMS_REQUEST_SUCCEED: {
       return {
         ...state,
         isLoading: false,
         error: null
       }
     }
-    case ITEM_REQUEST_FAILED: {
+    case ITEMS_REQUEST_FAILED: {
       return {
         ...state,
         isLoading: false,
@@ -34,14 +34,14 @@ const request = (state=initialState, action) => {
   }
 }
 
-const rootReducer = (state, action) => ({
-  byId: getById(state, action),
-  allIds: getAllIds(state, action)
+const dataReducer = combineReducers({
+  byId: getById('items'),
+  allIds: getAllIds('items')
 })
 
 const itemReducer = combineReducers({
   request,
-  data: rootReducer
+  data: dataReducer
 })
 
 export default itemReducer;
