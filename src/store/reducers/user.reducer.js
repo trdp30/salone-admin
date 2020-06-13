@@ -1,19 +1,47 @@
-import { USER_LOGGING_IN, USER_LOGGED_OUT, USER_LOGGED_IN } from '../action-type';
+import { USERS_REQUEST_INITIATED, USERS_REQUEST_SUCCEED, USERS_REQUEST_FAILED } from '../action-type';
+import { combineReducers } from 'redux';
+import { getAllIds, getById } from './extract_id.reducer';
 
 const initialState = {
-  data: null,
-  isLoading: false
+  isLoading: false,
+  error: null
 }
 
-export default function userUpdate(state = initialState, { type, payload }) {
-  switch (type) {
-    case USER_LOGGING_IN:
-      return { ...initialState, isLoading: true }
-    case USER_LOGGED_IN:
-      return { data: payload, isLoading: false }
-    case USER_LOGGED_OUT:
-      return initialState
-    default:
-      return state
+const request = (state=initialState, action) => {
+  switch(action.type) {
+    case USERS_REQUEST_INITIATED: {
+      return {
+        ...state,
+        isLoading: true,
+        error: null
+      }
+    }
+    case USERS_REQUEST_SUCCEED: {
+      return {
+        ...state,
+        isLoading: false,
+        error: null
+      }
+    }
+    case USERS_REQUEST_FAILED: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error
+      }
+    }
+    default: return state;
   }
 }
+
+const dataReducer = combineReducers({
+  byId: getById('users'),
+  allIds: getAllIds('users')
+})
+
+const itemReducer = combineReducers({
+  request,
+  data: dataReducer
+})
+
+export default itemReducer;

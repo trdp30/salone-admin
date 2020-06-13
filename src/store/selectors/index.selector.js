@@ -1,6 +1,6 @@
-export const getRecord = (entities, type, id) => {
-  if(entities && entities[type] && entities) {
-    return entities[type][id]
+export const getRecord = (data, id) => {
+  if(data && data.allIds && data.allIds.length) {
+    return data.byId[id]
   } else {
     return {}
   }

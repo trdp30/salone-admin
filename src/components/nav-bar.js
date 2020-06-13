@@ -1,10 +1,9 @@
 import React from 'react';
 import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
-import { logout } from '../store/actions/user.action';
 import { connect } from 'react-redux'
 
-import { userIsNotAuthenticated, userIsAuthenticated } from '../config/auth';
+import { userIsAuthenticated } from '../config/auth';
 import { invalidate } from '../store/actions/session.action';
 
 // const LoginLink = userIsNotAuthenticated(() => (

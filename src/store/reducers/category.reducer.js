@@ -1,39 +1,29 @@
-import { CATEGORY_REQUEST_INITIATED, CATEGORY_REQUEST_SUCCEED, CATEGORY_REQUEST_FAILED } from '../action-type';
-import produce from "immer"
-import { find } from 'lodash';
+import { CATEGORIES_REQUEST_INITIATED, CATEGORIES_REQUEST_SUCCEED, CATEGORIES_REQUEST_FAILED } from '../action-type';
+import { combineReducers } from 'redux';
+import { getById, getAllIds } from './extract_id.reducer';
 
 const initialState = {
   isLoading: false,
-  data: {},
   error: null
 }
 
-const categoryReducers = (state = initialState, action) => {
+const request = (state=initialState, action) => {
   switch(action.type) {
-    case CATEGORY_REQUEST_INITIATED : {
+    case CATEGORIES_REQUEST_INITIATED : {
       return {
         ...state,
         isLoading: true,
         error: null
       }
     }
-    case CATEGORY_REQUEST_SUCCEED : {
-      return produce(state, draftState => {
-        // if(draftState.data && draftState.data.length) {
-          // if(action.payload && Array.isArray(action.payload) && action.payload.length) {
-          //   action.payload.forEach(data => {
-          //     if(find(data))
-              
-          //   });
-          // }
-        // } else {
-          draftState.isLoading = false
-          draftState.error = null
-          draftState.data = action.payload
-        // }
-      })
+    case CATEGORIES_REQUEST_SUCCEED : {
+      return {
+        ...state,
+        isLoading: false,
+        error: null
+      }
     }
-    case CATEGORY_REQUEST_FAILED : {
+    case CATEGORIES_REQUEST_FAILED : {
       return {
         ...state,
         isLoading: false,
@@ -44,4 +34,14 @@ const categoryReducers = (state = initialState, action) => {
   }
 }
 
-export default categoryReducers;
+const dataReducer = combineReducers({
+  byId: getById('categories'),
+  allIds: getAllIds('categories')
+})
+
+const categoryReducer = combineReducers({
+  request,
+  data: dataReducer
+})
+
+export default categoryReducer;

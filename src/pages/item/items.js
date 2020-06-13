@@ -4,17 +4,20 @@ import { fetchItems } from '../../store/actions/item.action';
 import { Link } from 'react-router-dom';
 
 function Items(props) {
+  const { itemModel } = props
   useEffect(() => {
-    props.getItems()
+    if(!itemModel.request.isLoading && !itemModel.request.error) {
+      props.getItems()
+    }
   }, [])
 
   return (
     <ol>
-      {!props.itemModel.isLoading && props.itemModel.data.result && props.itemModel.data.result.length &&
-        props.itemModel.data.result.map((itemId) => (
+      {!props.itemModel.isLoading && props.itemModel.data.allIds && props.itemModel.data.allIds.length &&
+        props.itemModel.data.allIds.map((itemId) => (
           <li key={itemId}>
             <Link to={`/item/${itemId}/details`}>
-              {props.itemModel.data.entities.items[itemId].name}
+              {props.itemModel.data.byId[itemId] && props.itemModel.data.byId[itemId].name}
             </Link>
           </li>
         ))}

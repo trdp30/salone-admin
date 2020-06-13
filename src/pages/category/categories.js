@@ -5,14 +5,19 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/loading';
 
 function Categories(props) {
+  const { categoryModel } = props
 
   useEffect(() => {
-    props.getCategories()
+    if(!categoryModel.request.isLoading && !categoryModel.request.error) {
+      props.getCategories()
+    }
   }, [])
+
+  console.log(categoryModel)
 
   return (
   <>
-    { !props.categoryModel.isLoading  ? 
+    { !props.categoryModel.request.isLoading  ? 
       <div className="desktop-list" style={{marginTop : '24px', fontSize : '12px'}}>
         <div className="table-responsive">
           <table className="table">
@@ -26,15 +31,15 @@ function Categories(props) {
               </tr>
             </thead>
             <tbody>
-            {!props.categoryModel.isLoading && props.categoryModel.data.result && props.categoryModel.data.result.length &&
-              props.categoryModel.data.result.map((categoryID) => (
+            {!props.categoryModel.request.isLoading && props.categoryModel.data.allIds && props.categoryModel.data.allIds.length &&
+              props.categoryModel.data.allIds.map((categoryID) => (
                 <tr>
                   <td>
-                    <img src={props.categoryModel.data.entities.categories[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
+                    <img src={props.categoryModel.data.byId[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
                   </td>
-                  <td>{props.categoryModel.data.entities.categories[categoryID].display_name}</td>
-                  <td>{props.categoryModel.data.entities.categories[categoryID].name}</td>
-                  <td>{props.categoryModel.data.entities.categories[categoryID].image_source}</td>
+                  <td>{props.categoryModel.data.byId[categoryID].display_name}</td>
+                  <td>{props.categoryModel.data.byId[categoryID].name}</td>
+                  <td>{props.categoryModel.data.byId[categoryID].image_source}</td>
                   <td>
                   <Link to={`/category/${categoryID}/details`}>
                     <button type="button" class="btn btn-info btn-sm">View Item</button>
