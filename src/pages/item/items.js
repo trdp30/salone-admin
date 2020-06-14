@@ -13,7 +13,7 @@ function Items(props) {
 
   return (
     <ol>
-      {!props.itemModel.isLoading && props.itemModel.data.allIds && props.itemModel.data.allIds.length &&
+      {!props.itemModel.request.isLoading && props.itemModel.data.allIds && props.itemModel.data.allIds.length &&
         props.itemModel.data.allIds.map((itemId) => (
           <li key={itemId}>
             <Link to={`/item/${itemId}/details`}>

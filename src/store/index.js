@@ -9,6 +9,10 @@ import registrationReducer from './reducers/register.reducer';
 import categoryReducer from './reducers/category.reducer';
 import itemReducers from './reducers/item.reducer';
 import orderReducer from './reducers/order.reducer';
+import cartItemReducer from './reducers/cart-item.reducer';
+import addressReducer from './reducers/address.reducer';
+import appointmentReducer from './reducers/appointment.reducer';
+import packageReducer from './reducers/package.reducer';
 
 const reducers =  combineReducers({
   appState: AppStateReducer,
@@ -18,7 +22,11 @@ const reducers =  combineReducers({
   register: registrationReducer,
   category: categoryReducer,
   item: itemReducers,
-  order: orderReducer
+  order: orderReducer,
+  cartItem: cartItemReducer,
+  address: addressReducer,
+  appointment: appointmentReducer,
+  package: packageReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

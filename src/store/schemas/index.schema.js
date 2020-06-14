@@ -11,20 +11,36 @@ const itemProcessStrategy = (value, parent, key) => {
   }
 };
 
-export const itemSchema = new schema.Entity('items', {}, { processStrategy: itemProcessStrategy });
-export const categorySchema = new schema.Entity('categories', {
+const itemSchema = new schema.Entity('items',);
+const categorySchema = new schema.Entity('categories', {
   items: [itemSchema]
 })
-export const packageSchema = new schema.Entity('packages', {
+const packageSchema = new schema.Entity('packages', {
   items: [itemSchema]
 })
+const cartItemSchema = new schema.Entity('cartItems', {
+  package: packageSchema,
+  item: itemSchema
+})
 
-export const itemArraySchema = new schema.Array(itemSchema)
-export const catergoryArraySchema = new schema.Array(categorySchema)
-export const packageArraySchema =  new schema.Array(packageSchema)
+const appointmentSchema = new schema.Entity('appointment')
 
-export const orderSchema = new schema.Entity('orders');
-export const orderArraySchema =  new schema.Array(orderSchema);
+const itemArraySchema = new schema.Array(itemSchema)
+const catergoryArraySchema = new schema.Array(categorySchema)
+const packageArraySchema =  new schema.Array(packageSchema)
+const cartItemArraySchema = new schema.Array(cartItemSchema)
 
-export const userSchema = new schema.Entity('users');
-export const userArraySchema = new schema.Array(userSchema)
+const orderSchema = new schema.Entity('orders', {
+  cartItems: cartItemArraySchema,
+  appointment: appointmentSchema
+});
+const orderArraySchema =  new schema.Array(orderSchema);
+
+const userSchema = new schema.Entity('users');
+const userArraySchema = new schema.Array(userSchema)
+
+export { itemSchema, categorySchema, packageSchema,
+  itemArraySchema, catergoryArraySchema, packageArraySchema,
+  orderSchema, orderArraySchema, userSchema,
+  userArraySchema,  cartItemSchema, appointmentSchema,
+  cartItemArraySchema }

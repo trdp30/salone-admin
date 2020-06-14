@@ -34,9 +34,9 @@ const request = (state=initialState, action) => {
   }
 }
 
-const dataReducer = (state, action) => ({
-  byIs: getById(state, action),
-  allIds: getAllIds(state, action)
+const dataReducer = combineReducers({
+  byId: getById('orders'),
+  allIds: getAllIds('orders')
 })
 
 const orderReducer = combineReducers({
