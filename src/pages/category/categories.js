@@ -13,8 +13,6 @@ function Categories(props) {
     }
   }, [])
 
-  console.log(categoryModel)
-
   return (
   <>
     { !props.categoryModel.request.isLoading  ? 
