@@ -9,7 +9,6 @@ function CategoryDetails(props) {
   const [ showList, toogleListView ] = useState(false)
   const [ showSubCategory, toogleSubCategoryView ] = useState(false)
   
-
   useEffect(() => {
     if(!categoryModel.request.isLoading && !categoryModel.request.error && categoryModel.data.allIds && !categoryModel.data.allIds.length) {
       getCategoryById(match.params.category_id)

@@ -34,14 +34,14 @@ const request = (state=initialState, action) => {
   }
 }
 
-const rootReducer = (state, action) => ({
+const dataReducer = (state, action) => ({
   byIs: getById(state, action),
   allIds: getAllIds(state, action)
 })
 
 const orderReducer = combineReducers({
   request,
-  data: rootReducer
+  data: dataReducer
 })
 
 export default orderReducer;

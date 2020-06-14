@@ -2,7 +2,7 @@ export const getAllIds = (modelName) => {
   return (state=[], action) => {
     if(action && action.type && typeof(action.type) == 'string' && action.type.toLowerCase().includes(modelName) && action.payload && action.payload.result && action.payload.entities && action.payload.entities[modelName]) {
       if(Array.isArray(action.payload.result) && action.payload.result.length) {
-        return action.payload.result
+        return action.payload.result //need to abstraction fron byId reducer if not updating automatically
       } else {
         return [action.payload.result]
       }
