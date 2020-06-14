@@ -34,7 +34,9 @@ export const findOrder = (order_id) => {
       schema: orderSchema,
       relationShips: [
         { modelName: 'cartItems', actionType: CARTITEMS_REQUEST_SUCCEED },
-        { modelName: 'appointment', actionType: APPOINTMENT_REQUEST_SUCCEED}
+        { modelName: 'appointment', actionType: APPOINTMENT_REQUEST_SUCCEED },
+        { modelName: 'items', actionType: ITEMS_REQUEST_SUCCEED },
+        { modelName: 'packages', actionType: PACKAGES_REQUEST_SUCCEED }
       ]
     })))
     .catch((e) => dispatch(catchReduxError(ORDERS_REQUEST_FAILED, e)))

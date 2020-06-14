@@ -16,7 +16,7 @@ function Orders(props) {
       {!props.orderModel.request.isLoading && props.orderModel.data.allIds && props.orderModel.data.allIds.length &&
         props.orderModel.data.allIds.map((orderId) => (
           <li key={orderId}>
-            <Link to={`/item/${orderId}/details`}>
+            <Link to={`/order/${orderId}/details`}>
               {props.orderModel.data.byId[orderId] && props.orderModel.data.byId[orderId].address_id}
             </Link>
           </li>

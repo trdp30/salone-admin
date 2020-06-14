@@ -22,13 +22,16 @@ const cartItemSchema = new schema.Entity('cartItems', {
   package: packageSchema,
   item: itemSchema
 })
-
 const appointmentSchema = new schema.Entity('appointment')
+const addressSchema = new schema.Entity('address')
+const userSchema = new schema.Entity('users');
 
 const itemArraySchema = new schema.Array(itemSchema)
 const catergoryArraySchema = new schema.Array(categorySchema)
 const packageArraySchema =  new schema.Array(packageSchema)
 const cartItemArraySchema = new schema.Array(cartItemSchema)
+const addressArraySchema = new schema.Array(addressSchema)
+const userArraySchema = new schema.Array(userSchema)
 
 const orderSchema = new schema.Entity('orders', {
   cartItems: cartItemArraySchema,
@@ -36,11 +39,8 @@ const orderSchema = new schema.Entity('orders', {
 });
 const orderArraySchema =  new schema.Array(orderSchema);
 
-const userSchema = new schema.Entity('users');
-const userArraySchema = new schema.Array(userSchema)
-
 export { itemSchema, categorySchema, packageSchema,
   itemArraySchema, catergoryArraySchema, packageArraySchema,
   orderSchema, orderArraySchema, userSchema,
   userArraySchema,  cartItemSchema, appointmentSchema,
-  cartItemArraySchema }
+  cartItemArraySchema, addressSchema, addressArraySchema }
