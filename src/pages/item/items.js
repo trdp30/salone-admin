@@ -14,7 +14,7 @@ function Items(props) {
 
   return (
     <>
-      {!props.itemModel.isLoading  ? 
+      {!itemModel.request.isLoading  ? 
         (
           <div className="desktop-list" style={{marginTop : '24px', fontSize : '12px'}}>
             <div className="table-responsive">
@@ -30,17 +30,17 @@ function Items(props) {
                   </tr>
                 </thead>
                 <tbody>
-                {!props.itemModel.isLoading && props.itemModel.data.result && props.itemModel.data.result.length &&
-                  props.itemModel.data.result.map((itemId) => (
+                {!itemModel.request.isLoading && itemModel.data.allIds && itemModel.data.allIds.length &&
+                  itemModel.data.allIds.map((itemId) => (
                     <tr>
                       <td>
-                        <img src={props.itemModel.data.entities.items[itemId].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
+                        <img src={itemModel.data.byId[itemId].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
                       </td>
-                      <td>{props.itemModel.data.entities.items[itemId].name}</td>
-                      <td>{props.itemModel.data.entities.items[itemId].description}</td>
-                      <td>{props.itemModel.data.entities.items[itemId].duration}</td>
-                      <td>{props.itemModel.data.entities.items[itemId].price}</td>
-                      <td>{props.itemModel.data.entities.items[itemId].mrp_price}</td>
+                      <td>{itemModel.data.byId[itemId].name}</td>
+                      <td>{itemModel.data.byId[itemId].description}</td>
+                      <td>{itemModel.data.byId[itemId].duration}</td>
+                      <td>{itemModel.data.byId[itemId].price}</td>
+                      <td>{itemModel.data.byId[itemId].mrp_price}</td>
                     </tr>
                   ))}
                 </tbody>
