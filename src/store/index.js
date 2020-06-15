@@ -13,6 +13,7 @@ import cartItemReducer from './reducers/cart-item.reducer';
 import addressReducer from './reducers/address.reducer';
 import appointmentReducer from './reducers/appointment.reducer';
 import packageReducer from './reducers/package.reducer';
+import dashboardReducer from './reducers/dashboard.reducer';
 
 const reducers =  combineReducers({
   appState: AppStateReducer,
@@ -26,7 +27,8 @@ const reducers =  combineReducers({
   cartItem: cartItemReducer,
   address: addressReducer,
   appointment: appointmentReducer,
-  package: packageReducer
+  package: packageReducer,
+  counts: dashboardReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
