@@ -65,20 +65,24 @@ function CategoryDetails(props) {
             </div>
             <br/><br/>
             <div class="row">
-              <div class="col-sm-4">
-                <h5>Items</h5>
-                { showList ? 
-                  <button type="button" class="btn btn-info" onClick={toogleList}>Click to Close Items</button> :
-                  <button type="button" class="btn btn-info" onClick={toogleList}>Click to View Items</button>
-                }
-              </div>
-              <div class="col-sm-4">
-                <h5>Sub Categories</h5>
-                { showSubCategory ? 
-                  <button type="button" class="btn btn-info" onClick={toogleSubCategory}>Click to Close Sub Categories</button> :
-                  <button type="button" class="btn btn-info" onClick={toogleSubCategory}>Click to View Sub Categories</button>
-                }
-              </div>
+              {currentCategory && currentCategory.items && currentCategory.items.length &&
+                <div class="col-sm-4">
+                  <h5>Items</h5>
+                  { showList ? 
+                    <button type="button" class="btn btn-info" onClick={toogleList}>Click to Close Items</button> :
+                    <button type="button" class="btn btn-info" onClick={toogleList}>Click to View Items</button>
+                  }
+                </div>
+              }
+              { currentCategory.hasSubCategory && 
+                <div class="col-sm-4">
+                  <h5>Sub Categories</h5>
+                  { showSubCategory ? 
+                    <button type="button" class="btn btn-info" onClick={toogleSubCategory}>Click to Close Sub Categories</button> :
+                    <button type="button" class="btn btn-info" onClick={toogleSubCategory}>Click to View Sub Categories</button>
+                  }
+                </div>
+              }
             </div>
           </div>
 
