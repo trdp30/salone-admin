@@ -5,16 +5,15 @@ import { getRecord } from '../../store/selectors/index.selector';
 import Loading from '../../components/loading';
 
 function CategoryDetails(props) {
-  const { currentCategory, categoryModel, getCategoryById, match } = props
+  const { currentCategory, categoryModel, getCategoryById, match, itemModel } = props
   const [ showList, toogleListView ] = useState(false)
   const [ showSubCategory, toogleSubCategoryView ] = useState(false)
   
-
   useEffect(() => {
-    if(!categoryModel.isLoading && !categoryModel.error && !categoryModel.data.result) {
+    if(!categoryModel.request.isLoading && !categoryModel.request.error && categoryModel.data.allIds && !categoryModel.data.allIds.length) {
       getCategoryById(match.params.category_id)
     }
-  })
+  }, [])
 
   const toogleList = () => {
     if(showList) {
@@ -35,11 +34,9 @@ function CategoryDetails(props) {
     }
   }
 
-
-console.log("Manoj", currentCategory);
   return (
     <>
-      {!props.categoryModel.isLoading  ? 
+      {!props.categoryModel.request.isLoading  ? 
       (
         <div>
           <div class="container-fluid text-center">
@@ -108,13 +105,13 @@ console.log("Manoj", currentCategory);
                     currentCategory.items.map((itemId) => (
                       <tr>
                         <td>
-                          <img src={categoryModel.data.entities.items[itemId].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
+                          <img src={itemModel.data.byId[itemId] && itemModel.data.byId[itemId].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
                         </td>
-                        <td>{categoryModel.data.entities.items[itemId].name}</td>
-                        <td>{categoryModel.data.entities.items[itemId].description}</td>
-                        <td>{categoryModel.data.entities.items[itemId].duration}</td>
-                        <td>{categoryModel.data.entities.items[itemId].price}</td>
-                        <td>{categoryModel.data.entities.items[itemId].mrp_price}</td>
+                        <td>{itemModel.data.byId[itemId] && itemModel.data.byId[itemId].name}</td>
+                        <td>{itemModel.data.byId[itemId] && itemModel.data.byId[itemId].description}</td>
+                        <td>{itemModel.data.byId[itemId] && itemModel.data.byId[itemId].duration}</td>
+                        <td>{itemModel.data.byId[itemId] && itemModel.data.byId[itemId].price}</td>
+                        <td>{itemModel.data.byId[itemId] && itemModel.data.byId[itemId].mrp_price}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -155,12 +152,11 @@ console.log("Manoj", currentCategory);
   )
 }
 
-const mapStateToProps = (state, { match } ) => {
-  return {
-    categoryModel: state.category,
-    currentCategory: getRecord(state.category.data.entities, 'categories', match.params.category_id)
-  }
-}
+const mapStateToProps = (state, { match } ) => ({
+  categoryModel: state.category,
+  itemModel: state.item,
+  currentCategory: getRecord(state.category.data, match.params.category_id)
+})
 
 const mapDispatchToProps = dispatch => ({
   getCategoryById: (id) => dispatch(findCategory(id))

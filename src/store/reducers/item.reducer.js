@@ -1,29 +1,29 @@
-import { ITEM_REQUEST_INITIATED, ITEM_REQUEST_SUCCEED, ITEM_REQUEST_FAILED } from '../action-type';
-import produce from 'immer';
+import { ITEMS_REQUEST_INITIATED, ITEMS_REQUEST_SUCCEED, ITEMS_REQUEST_FAILED } from '../action-type';
+import { combineReducers } from 'redux';
+import { getAllIds, getById } from './extract_id.reducer';
 
 const initialState = {
   isLoading: false,
-  data: {},
   error: null
 }
 
-const itemReducers = (state=initialState, action) => {
+const request = (state=initialState, action) => {
   switch(action.type) {
-    case ITEM_REQUEST_INITIATED: {
+    case ITEMS_REQUEST_INITIATED: {
       return {
         ...state,
         isLoading: true,
         error: null
       }
     }
-    case ITEM_REQUEST_SUCCEED: {
-      return produce(state, draftState => {
-        draftState.data = action.payload
-        draftState.isLoading = false
-        draftState.error = null
-      })
+    case ITEMS_REQUEST_SUCCEED: {
+      return {
+        ...state,
+        isLoading: false,
+        error: null
+      }
     }
-    case ITEM_REQUEST_FAILED: {
+    case ITEMS_REQUEST_FAILED: {
       return {
         ...state,
         isLoading: false,
@@ -34,4 +34,14 @@ const itemReducers = (state=initialState, action) => {
   }
 }
 
-export default itemReducers;
+const dataReducer = combineReducers({
+  byId: getById('items'),
+  allIds: getAllIds('items')
+})
+
+const itemReducer = combineReducers({
+  request,
+  data: dataReducer
+})
+
+export default itemReducer;

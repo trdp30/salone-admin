@@ -1,4 +1,4 @@
-import { CATEGORIES_REQUEST_INITIATED, CATEGORIES_REQUEST_SUCCEED, CATEGORIES_REQUEST_FAILED } from '../action-type';
+import { CARTITEMS_REQUEST_INITIATED, CARTITEMS_REQUEST_SUCCEED, CARTITEMS_REQUEST_FAILED } from '../action-type';
 import { combineReducers } from 'redux';
 import { getById, getAllIds } from './extract_id.reducer';
 
@@ -9,21 +9,21 @@ const initialState = {
 
 const request = (state=initialState, action) => {
   switch(action.type) {
-    case CATEGORIES_REQUEST_INITIATED : {
+    case CARTITEMS_REQUEST_INITIATED : {
       return {
         ...state,
         isLoading: true,
         error: null
       }
     }
-    case CATEGORIES_REQUEST_SUCCEED : {
+    case CARTITEMS_REQUEST_SUCCEED : {
       return {
         ...state,
         isLoading: false,
         error: null
       }
     }
-    case CATEGORIES_REQUEST_FAILED : {
+    case CARTITEMS_REQUEST_FAILED : {
       return {
         ...state,
         isLoading: false,
@@ -35,13 +35,13 @@ const request = (state=initialState, action) => {
 }
 
 const dataReducer = combineReducers({
-  byId: getById('categories'),
-  allIds: getAllIds('categories')
+  byId: getById('cartItems'),
+  allIds: getAllIds('cartItems')
 })
 
-const categoryReducer = combineReducers({
+const cartItemReducer = combineReducers({
   request,
   data: dataReducer
 })
 
-export default categoryReducer;
+export default cartItemReducer;

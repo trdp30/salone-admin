@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/loading';
 
 function Items(props) {
+  const { itemModel } = props
   useEffect(() => {
-    props.getItems()
+    if(!itemModel.request.isLoading && !itemModel.request.error) {
+      props.getItems()
+    }
   }, [])
 
   return (
