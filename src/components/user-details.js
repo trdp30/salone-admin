@@ -13,7 +13,7 @@ function UserDetails(props) {
 
   return (
     <>
-      {userModel.data && userModel.data.byId && userModel.data.byId[user_id] && userModel.data.byId[user_id].name}
+      {userModel.request.isLoading ? (<div>Loading..</div>) : (<div>{userModel.data && userModel.data.byId && userModel.data.byId[user_id] && userModel.data.byId[user_id].name}</div>)}
     </>
   )
 }
