@@ -50,7 +50,7 @@ function Orders(props) {
                     <tr>
                       <td>{props.orderModel.data.byId[orderId].id}</td>
                       <td>
-                        <UserDetails user_id={props.orderModel.data.byId[orderId].id}/>
+                        <UserDetails user_id={props.orderModel.data.byId[orderId].user_id}/>
                       </td>
                     </tr>
                   ))}
