@@ -3,7 +3,7 @@ import { query, findRecord } from '../async-actions';
 import { addressArraySchema, addressSchema } from '../schemas/index.schema'
 import { actionInitiated, catchReduxError, normalizedData } from './general.action';
 
-export const fetchCartItems = () => {
+export const fetchAddresses = () => {
   return function(dispatch) {
     dispatch(actionInitiated(ADDRESS_REQUEST_INITIATED))
     return query('address', { organization_id: 2 })
@@ -18,7 +18,7 @@ export const fetchCartItems = () => {
   }
 }
 
-export const findCartItem = (address_id) => {
+export const fetchAddress = (address_id) => {
   return function(dispatch) {
     dispatch(actionInitiated(ADDRESS_REQUEST_INITIATED))
     return findRecord('address', address_id)

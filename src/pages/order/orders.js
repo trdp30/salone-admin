@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchOrders } from '../../store/actions/order.action';
 import Loading from '../../components/loading';
 import UserDetails from '../../components/user-details';
+import AddressDetails from '../../components/address-details';
 
 function Orders(props) {
 
