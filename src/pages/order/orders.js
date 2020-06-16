@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrders } from '../../store/actions/order.action';
+import AddressDetails from '../../components/address-details';
 
 function Orders(props) {
   const { orderModel } = props
@@ -17,7 +18,7 @@ function Orders(props) {
         props.orderModel.data.allIds.map((orderId) => (
           <li key={orderId}>
             <Link to={`/order/${orderId}/details`}>
-              {props.orderModel.data.byId[orderId] && props.orderModel.data.byId[orderId].address_id}
+              {props.orderModel.data.byId[orderId] && <AddressDetails address_id={props.orderModel.data.byId[orderId].address_id} />}
             </Link>
           </li>
         ))}
