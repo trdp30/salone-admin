@@ -1,4 +1,5 @@
-import { schema } from 'normalizr';
+import { normalizr } from 'normalize-reducer';
+const { schema } = normalizr
 
 const itemProcessStrategy = (value, parent, key) => {
   switch (key) {
