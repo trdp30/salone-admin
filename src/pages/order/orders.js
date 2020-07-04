@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrders } from '../../store/actions/order.action';
@@ -40,9 +40,10 @@ const columns = [
     label: "Status",
     width: 250
   },
-  { valuePath: "address.formatedAddress",
+  { valuePath: "address_id",
     label: "Address",
-    width: 300
+    width: 300,
+    component: AddressDetails
   },
   { valuePath: "device.osName",
     label: "Device",
@@ -67,7 +68,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getOrders: () => dispatch(fetchOrders())
+  getOrders: (query) => dispatch(fetchOrders(query))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Orders)

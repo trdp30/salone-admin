@@ -3,10 +3,10 @@ import { query, findRecord, createRecord, updateRecord } from '../async-actions'
 import { orderArraySchema, orderSchema } from '../schemas/index.schema'
 import { actionInitiated, catchReduxError, normalizedData } from './general.action';
 
-export const fetchOrders = () => {
+export const fetchOrders = (q) => {
   return function(dispatch) {
     dispatch(actionInitiated(ORDERS_REQUEST_INITIATED))
-    return query('order', { organization_id: 2 })
+    return query('order', { organization_id: 2, ...q })
     .then((response) => dispatch(normalizedData({
       data: response,
       modelName: 'orders',

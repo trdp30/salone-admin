@@ -1,5 +1,5 @@
 /*
-  1: sorable on column click
+  1: sortable on column click
   2: row click
   3: horizontal click
   4: fixed column
@@ -7,21 +7,56 @@
   6: fixed header
 */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import sumBy from 'lodash/sumBy';
 
 function ListView(props) {
   const { data, columns, fetchData } = props
+  const pageNumber = useRef(1)
   const [ totalWidth ] = useState(sumBy(columns, 'width'))
+  const [ targetElement, setTargetElement ] = useState(null)
+
+  const observer = useRef(new IntersectionObserver(handleIntersect, {
+    root: document.querySelector('#table-container'),
+    rootMargin: '0px',
+    threshold: 0.5
+  }))
+
+  function handleIntersect(IntersectionObserverEntry) {
+    if(IntersectionObserverEntry.length) {
+      IntersectionObserverEntry.forEach((entry) => {
+        if(entry.intersectionRatio > 0) {
+          makeRequest();
+        }
+      })
+    }
+  }
 
   useEffect(() => {
-    if(!data.request.isLoading && !data.request.error) {
-      fetchData()
+    const currentTargetElement = targetElement
+    const currentObserver = observer.current
+
+    if(currentTargetElement) {
+      currentObserver.observe(currentTargetElement)
     }
-  }, [])
-  
+    return () => {
+      if(currentTargetElement) {
+        currentObserver.unobserve(currentTargetElement)
+      }
+    }
+  }, [targetElement])
+
+  function makeRequest() {
+    if(!data.request.isLoading && !data.request.error) {
+      const pageSize = 25
+      const page = pageNumber.current
+      fetchData({page, pageSize})
+      pageNumber.current = page + 1
+    }
+  }
+
   return (
-    <div className="desktop-list">
+    <div className="table-container desktop-list">
       <table className="table" style={{width: totalWidth, overflowX: 'auto'}}>
         <thead className="thead-dark">
           <tr>
@@ -50,6 +85,7 @@ function ListView(props) {
               })}
             </tr>
           ))}
+          <tr ref={setTargetElement} id="targetElement" style={{height: 5}}></tr>
         </tbody>
       </table>
     </div>
