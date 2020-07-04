@@ -29,22 +29,24 @@ function Categories(props) {
               </tr>
             </thead>
             <tbody>
-            {!props.categoryModel.request.isLoading && props.categoryModel.data.allIds && props.categoryModel.data.allIds.length &&
-              props.categoryModel.data.allIds.map((categoryID) => (
-                <tr>
-                  <td>
-                    <img src={props.categoryModel.data.byId[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
-                  </td>
-                  <td>{props.categoryModel.data.byId[categoryID].display_name}</td>
-                  <td>{props.categoryModel.data.byId[categoryID].name}</td>
-                  <td>{props.categoryModel.data.byId[categoryID].image_source}</td>
-                  <td>
-                  <Link to={`/category/${categoryID}/details`}>
-                    <button type="button" class="btn btn-info btn-sm">View Item</button>
-                  </Link>
-                  </td>
-                </tr>
-              ))}
+              <React.Fragment>
+                {!props.categoryModel.request.isLoading && props.categoryModel.data.allIds && props.categoryModel.data.allIds.length &&
+                  props.categoryModel.data.allIds.map((categoryID) => (
+                    <tr>
+                      <td>
+                        <img src={props.categoryModel.data.byId[categoryID].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
+                      </td>
+                      <td>{props.categoryModel.data.byId[categoryID].display_name}</td>
+                      <td>{props.categoryModel.data.byId[categoryID].name}</td>
+                      <td>{props.categoryModel.data.byId[categoryID].image_source}</td>
+                      <td>
+                      <Link to={`/category/${categoryID}/details`}>
+                        <button type="button" class="btn btn-info btn-sm">View Item</button>
+                      </Link>
+                      </td>
+                    </tr>
+                  ))}
+              </React.Fragment>
             </tbody>
           </table>
         </div>

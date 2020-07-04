@@ -33,6 +33,11 @@ export const catchReduxError = (type, error) => {
         }
       }
     }
+  } else if(error.message) {
+    return {
+      type: type,
+      error: error.message
+    }
   } else {
     return {
       type: type,

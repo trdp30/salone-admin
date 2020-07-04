@@ -8,6 +8,7 @@
     "immer": "^6.0.9",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
+    "normalize-reducer": "^1.0.4",
     "normalizr": "^3.6.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
