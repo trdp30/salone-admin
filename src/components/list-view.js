@@ -33,6 +33,10 @@ function ListView(props) {
   }
 
   useEffect(() => {
+    makeRequest()
+  }, [])
+
+  useEffect(() => {
     const currentTargetElement = targetElement
     const currentObserver = observer.current
 
@@ -55,6 +59,10 @@ function ListView(props) {
     }
   }
 
+  const onColumnClick = (column) => {
+    console.log(column)
+  }
+
   return (
     <div className="table-container desktop-list">
       <table className="table" style={{width: totalWidth, overflowX: 'auto'}}>
@@ -66,7 +74,7 @@ function ListView(props) {
                 return <th key={i} style={{width: column.width}}><CustomComponent {...column}/></th>
               }
               return (
-                <th key={i} style={{width: column.width}} className={column.classNames + " table-head"}><div>{column.label}</div></th>
+                <th key={i} style={{width: column.width, cursor: 'pointer'}} className={column.classNames + " table-head"} onClick={() => onColumnClick(column)}><div>{column.label}</div></th>
               )}
             )}
           </tr>

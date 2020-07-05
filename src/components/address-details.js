@@ -23,9 +23,9 @@ function AddressDetails(props) {
     }
   }, [])
 
-  if(value == 185) {
-    console.log(value)
-  }
+  // if(value == 185) {
+  //   console.log(value)
+  // }
   if(isLoading) {
     return <div>Loading..</div>
   }

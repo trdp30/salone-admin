@@ -3,10 +3,10 @@ import { query, findRecord } from '../async-actions';
 import { addressArraySchema, addressSchema } from '../schemas/index.schema'
 import { actionInitiated, catchReduxError, normalizedData } from './general.action';
 
-export const fetchAddresses = () => {
+export const fetchAddresses = (q={}) => {
   return function(dispatch) {
     dispatch(actionInitiated(ADDRESS_REQUEST_INITIATED))
-    return query('address', { organization_id: 2 })
+    return query('address', { organization_id: 2, ...q })
     .then((response) => dispatch(normalizedData({
       data: response,
       modelName: 'address',

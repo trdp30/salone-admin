@@ -2,11 +2,21 @@ import { ORDERS_REQUEST_INITIATED, ORDERS_REQUEST_SUCCEED, ORDERS_REQUEST_FAILED
 import { query, findRecord, createRecord, updateRecord } from '../async-actions';
 import { orderArraySchema, orderSchema } from '../schemas/index.schema'
 import { actionInitiated, catchReduxError, normalizedData } from './general.action';
+import { fetchUsers } from './user.action';
+import uniq from 'lodash/uniq';
+import { fetchAddresses } from './address.action';
 
 export const fetchOrders = (q) => {
   return function(dispatch) {
     dispatch(actionInitiated(ORDERS_REQUEST_INITIATED))
     return query('order', { organization_id: 2, ...q })
+    .then((response) => {
+      if(response && response.data && response.data.length) {
+        dispatch(fetchUsers({id: uniq(response.data.map(res => res.user_id ))}))
+        dispatch(fetchAddresses({id: uniq(response.data.map(res => res.address_id ))}))
+      }
+      return response
+    })
     .then((response) => dispatch(normalizedData({
       data: response,
       modelName: 'orders',

@@ -14,7 +14,9 @@ const columns = [
   { valuePath: "user_id",
     label: "Customer Name",
     width: 200,
-    component: UserDetails
+    component: UserDetails,
+    isSortable: true,
+    sortKey: 'user_name'
   },
   { valuePath: "cartItems",
     label: "Items",
