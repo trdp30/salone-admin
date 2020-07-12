@@ -33,10 +33,6 @@ function ListView(props) {
   }
 
   useEffect(() => {
-    makeRequest()
-  }, [])
-
-  useEffect(() => {
     const currentTargetElement = targetElement
     const currentObserver = observer.current
 

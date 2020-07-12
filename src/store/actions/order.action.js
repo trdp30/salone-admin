@@ -13,7 +13,7 @@ export const fetchOrders = (q) => {
     .then((response) => {
       if(response && response.data && response.data.length) {
         dispatch(fetchUsers({id: uniq(response.data.map(res => res.user_id ))}))
-        dispatch(fetchAddresses({id: uniq(response.data.map(res => res.address_id ))}))
+        // dispatch(fetchAddresses({id: uniq(response.data.map(res => res.address_id ))}))
       }
       return response
     })
