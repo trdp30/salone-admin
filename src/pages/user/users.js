@@ -1,34 +1,37 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { fetchUsers } from '../../store/actions/user.action';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchUsers } from "../../store/actions/user.action";
 
 function Items(props) {
-	const { userModel } = props
+  const { userModel } = props;
 
-	useEffect(() => {
-		if(!userModel.request.isLoading && !userModel.request.error) {
-			props.getUsers()
-		}
-	}, [])
+  useEffect(() => {
+    if (!userModel.request.isLoading && !userModel.request.error) {
+      props.getUsers();
+    }
+  }, []);
 
-	return (
-		<ol>
-			{!props.userModel.isLoading && props.userModel.data.allIds && props.userModel.data.allIds.length &&
+  return (
+    <ol>
+      {!props.userModel.isLoading &&
+        props.userModel.data.allIds &&
+        props.userModel.data.allIds.length &&
         props.userModel.data.allIds.map((userId) => (
-				<li key={userId}>
-					{props.userModel.data.byId[userId] && props.userModel.data.byId[userId].name}
-				</li>
+          <li key={userId}>
+            {props.userModel.data.byId[userId] &&
+              props.userModel.data.byId[userId].name}
+          </li>
         ))}
-		</ol>
-	)
+    </ol>
+  );
 }
 
-const mapStateToProps = state => ({
-	userModel: state.user
-})
+const mapStateToProps = (state) => ({
+  userModel: state.user,
+});
 
-const mapDispatchToProps = dispatch => ({
-	getUsers: () => dispatch(fetchUsers())
-})
+const mapDispatchToProps = (dispatch) => ({
+  getUsers: () => dispatch(fetchUsers()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items)
+export default connect(mapStateToProps, mapDispatchToProps)(Items);

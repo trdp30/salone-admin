@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export default function CategoryCreate() {
-	return (
-		<div>CategoryCreate Page</div>
-	)
+  return <div>CategoryCreate Page</div>;
 }

@@ -1,111 +1,107 @@
-
-body{
+body {
   background: #2bc0e4;
-  background: -webkit-linear-gradient(
-    45deg,
-    #2bc0e4,
-    #eaecc6
-  );
+  background: -webkit-linear-gradient(45deg, #2bc0e4, #eaecc6);
   background: linear-gradient(to right, #2bc0e4, #eaecc6);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
+
 /* Made with love by Mutiullah Samim*/
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
+@import url("https://fonts.googleapis.com/css?family=Numans");
 
-
-
-.container{
-height: 100%;
-align-content: center;
+.container {
+  height: 100%;
+  align-content: center;
 }
 
-.card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+.card {
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-.card-header h3{
-color: white;
+.card-header h3 {
+  color: white;
 }
 
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
 }
 
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
+.input-group-prepend span {
+  width: 50px;
+  background-color: #ffc312;
+  color: black;
+  border: 0 !important;
 }
 
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
-
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
 }
 
-.remember{
-color: white;
+.remember {
+  color: white;
 }
 
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
-.login_btn{
-color: black;
-background-color: #FFC312 !important;
-border-radius: 25px;
-width: 100px;
+.login_btn {
+  color: black;
+  background-color: #ffc312 !important;
+  border-radius: 25px;
+  width: 100px;
 }
 
-.login_btn:hover{
-color: black;
-background-color: white;
+.login_btn:hover {
+  color: black;
+  background-color: white;
 }
-
-
 
 .circle-tile {
   margin-bottom: 15px;
   text-align: center;
 }
+
 .circle-tile-heading {
   border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
   height: 80px;
   margin: 0 auto -40px;
   position: relative;
   transition: all 0.3s ease-in-out 0s;
   width: 80px;
 }
+
 .circle-tile-heading .fa {
   line-height: 80px;
 }
+
 .circle-tile-content {
   padding-top: 50px;
 }
+
 .circle-tile-number {
   font-size: 26px;
   font-weight: 700;
   line-height: 1;
   padding: 5px 0 15px;
 }
+
 .circle-tile-description {
   text-transform: uppercase;
 }
+
 .circle-tile-footer {
   background-color: rgba(0, 0, 0, 0.1);
   color: rgba(255, 255, 255, 0.5);
@@ -113,89 +109,112 @@ background-color: white;
   padding: 5px;
   transition: all 0.3s ease-in-out 0s;
 }
+
 .circle-tile-footer:hover {
   background-color: rgba(0, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
 }
+
 .circle-tile-heading.dark-blue:hover {
-  background-color: #2E4154;
+  background-color: #2e4154;
 }
+
 .circle-tile-heading.green:hover {
-  background-color: #138F77;
+  background-color: #138f77;
 }
+
 .circle-tile-heading.orange:hover {
-  background-color: #DA8C10;
+  background-color: #da8c10;
 }
+
 .circle-tile-heading.blue:hover {
-  background-color: #2473A6;
+  background-color: #2473a6;
 }
+
 .circle-tile-heading.red:hover {
-  background-color: #CF4435;
+  background-color: #cf4435;
 }
+
 .circle-tile-heading.purple:hover {
-  background-color: #7F3D9B;
+  background-color: #7f3d9b;
 }
+
 .tile-img {
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
 }
 
 .dark-blue {
-  background-color: #34495E;
+  background-color: #34495e;
 }
+
 .green {
-  background-color: #16A085;
+  background-color: #16a085;
 }
+
 .blue {
-  background-color: #2980B9;
+  background-color: #2980b9;
 }
+
 .orange {
-  background-color: #F39C12;
+  background-color: #f39c12;
 }
+
 .red {
-  background-color: #E74C3C;
+  background-color: #e74c3c;
 }
+
 .purple {
-  background-color: #8E44AD;
+  background-color: #8e44ad;
 }
+
 .dark-gray {
-  background-color: #7F8C8D;
+  background-color: #7f8c8d;
 }
+
 .gray {
-  background-color: #95A5A6;
+  background-color: #95a5a6;
 }
+
 .light-gray {
-  background-color: #BDC3C7;
+  background-color: #bdc3c7;
 }
+
 .yellow {
-  background-color: #F1C40F;
+  background-color: #f1c40f;
 }
+
 .text-dark-blue {
-  color: #34495E;
+  color: #34495e;
 }
+
 .text-green {
-  color: #16A085;
+  color: #16a085;
 }
+
 .text-blue {
-  color: #2980B9;
+  color: #2980b9;
 }
+
 .text-orange {
-  color: #F39C12;
+  color: #f39c12;
 }
+
 .text-red {
-  color: #E74C3C;
+  color: #e74c3c;
 }
+
 .text-purple {
-  color: #8E44AD;
+  color: #8e44ad;
 }
+
 .text-faded {
   color: rgba(255, 255, 255, 0.7);
 }
 
-
 .desktop-list {
   height: calc(100vh - 130px);
-  overflow : auto;
+  overflow: auto;
   margin-bottom: 0;
 }
 
@@ -213,61 +232,63 @@ background-color: white;
   }
 }
 
-table{
-  width:100%;
+table {
+  width: 100%;
 }
-.tbl-header{
-  background-color: rgba(255,255,255,0.3);
- }
-.tbl-content{
-  height:300px;
-  overflow-x:auto;
+
+.tbl-header {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tbl-content {
+  height: 300px;
+  overflow-x: auto;
   margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: white;
 }
-th{
+
+th {
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
   font-size: 12px;
   background: #eee;
 }
-td{
+
+td {
   padding: 15px;
   text-align: left;
-  vertical-align:middle;
+  vertical-align: middle;
   font-weight: 500;
   font-size: 12px;
   color: black;
   border-bottom: solid 1px gray;
 }
 
-
 /* demo styles */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-body{
+
+body {
   background: #2bc0e4;
-  background: -webkit-linear-gradient(
-    45deg,
-    #2bc0e4,
-    #eaecc6
-  );
+  background: -webkit-linear-gradient(45deg, #2bc0e4, #eaecc6);
   background: linear-gradient(to right, #2bc0e4, #eaecc6);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* for custom scrollbar for webkit browser*/
 
 ::-webkit-scrollbar {
-    width: 6px;
-} 
+  width: 6px;
+}
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-} 
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
 ::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .display-inline-block {
