@@ -4,6 +4,6 @@ export default function (API_ROOT, envName) {
     isProduction: true,
     isDevelopment: false,
     isStaging: false,
-    envName: envName ? envName : 'production'
+    envName: envName ? envName : "production",
   };
 }

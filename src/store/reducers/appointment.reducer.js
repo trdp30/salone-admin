@@ -1,47 +1,52 @@
-import { APPOINTMENT_REQUEST_INITIATED, APPOINTMENT_REQUEST_SUCCEED, APPOINTMENT_REQUEST_FAILED } from '../action-type';
-import { combineReducers } from 'redux';
-import { getById, getAllIds } from './extract_id.reducer';
+import {
+  APPOINTMENT_REQUEST_INITIATED,
+  APPOINTMENT_REQUEST_SUCCEED,
+  APPOINTMENT_REQUEST_FAILED,
+} from "../action-type";
+import { combineReducers } from "redux";
+import { getById, getAllIds } from "./extract_id.reducer";
 
 const initialState = {
   isLoading: false,
-  error: null
-}
+  error: null,
+};
 
-const request = (state=initialState, action) => {
-  switch(action.type) {
-    case APPOINTMENT_REQUEST_INITIATED : {
+const request = (state = initialState, action) => {
+  switch (action.type) {
+    case APPOINTMENT_REQUEST_INITIATED: {
       return {
         ...state,
         isLoading: true,
-        error: null
-      }
+        error: null,
+      };
     }
-    case APPOINTMENT_REQUEST_SUCCEED : {
+    case APPOINTMENT_REQUEST_SUCCEED: {
       return {
         ...state,
         isLoading: false,
-        error: null
-      }
+        error: null,
+      };
     }
-    case APPOINTMENT_REQUEST_FAILED : {
+    case APPOINTMENT_REQUEST_FAILED: {
       return {
         ...state,
         isLoading: false,
-        error: action.error
-      }
+        error: action.error,
+      };
     }
-    default : return state;
+    default:
+      return state;
   }
-}
+};
 
 const dataReducer = combineReducers({
-  byId: getById('appointment'),
-  allIds: getAllIds('appointment')
-})
+  byId: getById("appointment"),
+  allIds: getAllIds("appointment"),
+});
 
 const appointmentReducer = combineReducers({
   request,
-  data: dataReducer
-})
+  data: dataReducer,
+});
 
 export default appointmentReducer;

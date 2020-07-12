@@ -1,34 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { getRecord } from '../store/selectors/index.selector';
-import { fetchAddress } from '../store/actions/address.action';
-import { includes } from 'lodash';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchAddress } from "../store/actions/address.action";
 
 function AddressDetails(props) {
-  const { addressModel, getAddressById, address_id } = props
-  const [ currentAddress, setAddress ] = useState()
+  const { getAddressById, value } = props;
+  const [currentAddress, setAddress] = useState();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    if(address_id && addressModel.data && addressModel.data.allIds && addressModel.data.allIds.length && includes(addressModel.data.allIds, address_id)) {
-      setAddress(addressModel.data.byId[address_id])
-    } else if(!addressModel.request.isLoading && !addressModel.request.error) {
-      getAddressById(address_id)
+    if (value) {
+      init();
     }
-  }, [])
+  }, []);
 
+  async function init() {
+    let res = await getAddressById(value);
+    setAddress(res.payload.entities.address[value]);
+    setLoading(false);
+  }
+
+  // if(value == 185) {
+  //   console.log(value)
+  // }
+  if (isLoading) {
+    return <div>Loading..</div>;
+  }
   return (
     <>
-      { addressModel.data && addressModel.data.allIds && addressModel.data.allIds.length && addressModel.data.byId[address_id] && addressModel.data.byId[address_id].address.formatedAddress}
+      {currentAddress &&
+        currentAddress.address &&
+        currentAddress.address.formatedAddress}
     </>
-  )
+  );
 }
 
-const mapStateToProps = (state) => ({
-  addressModel: state.address,
-})
+const mapDispatchToProps = (dispatch) => ({
+  getAddressById: (id) => dispatch(fetchAddress(id)),
+});
 
-const mapDispatchToProps = dispatch => ({
-  getAddressById: (id) => dispatch(fetchAddress(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddressDetails)
+export default connect(null, mapDispatchToProps)(AddressDetails);

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import InputField from '../../components/elements/input';
+import React, { useState } from "react";
+import InputField from "../../components/elements/input";
 
 export default function OrderCreate() {
-  const [ phone, setPhone ] = useState()
-  const [ name, setName ] = useState()
-  const [ email, setEmail ] = useState()
-  const [ address, setAddress ] = useState()
-  const [ addressSecondary, setAddressSecondary ] = useState()
+  const [phone, setPhone] = useState();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [address, setAddress] = useState();
+  const [addressSecondary, setAddressSecondary] = useState();
 
   return (
     <div>
@@ -51,11 +51,17 @@ export default function OrderCreate() {
             </li>
           </ul>
 
-          <form className="card p-2" style={{width: '100%'}}>
+          <form className="card p-2" style={{ width: "100%" }}>
             <div className="input-group">
-              <input type="text" className="form-control" placeholder="Promo code" />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Promo code"
+              />
               <div className="input-group-append">
-                <button type="submit" className="btn btn-secondary">Redeem</button>
+                <button type="submit" className="btn btn-secondary">
+                  Redeem
+                </button>
               </div>
             </div>
           </form>
@@ -127,7 +133,11 @@ export default function OrderCreate() {
             <div className="row">
               <div className="col-md-5 mb-3">
                 <label htmlFor="country">Country</label>
-                <select className="custom-select d-block w-100" id="country" required="">
+                <select
+                  className="custom-select d-block w-100"
+                  id="country"
+                  required=""
+                >
                   <option value="">Choose...</option>
                   <option>United States</option>
                 </select>
@@ -137,7 +147,11 @@ export default function OrderCreate() {
               </div>
               <div className="col-md-4 mb-3">
                 <label htmlFor="state">State</label>
-                <select className="custom-select d-block w-100" id="state" required="">
+                <select
+                  className="custom-select d-block w-100"
+                  id="state"
+                  required=""
+                >
                   <option value="">Choose...</option>
                   <option>California</option>
                 </select>
@@ -147,18 +161,24 @@ export default function OrderCreate() {
               </div>
               <div className="col-md-3 mb-3">
                 <label htmlFor="zip">Zip</label>
-                <input type="text" className="form-control" id="zip" placeholder="" required="" />
-                <div className="invalid-feedback">
-                  Zip code required.
-                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="zip"
+                  placeholder=""
+                  required=""
+                />
+                <div className="invalid-feedback">Zip code required.</div>
               </div>
             </div>
-            
+
             <hr className="mb-4" />
-            <button className="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button className="btn btn-primary btn-lg btn-block" type="submit">
+              Continue to checkout
+            </button>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { findUser } from '../../store/actions/user.action';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { findUser } from "../../store/actions/user.action";
+import { getUserById } from "../../store/selectors/user.selector";
 
 function UserDetails(props) {
-  const { value, fetchUser } = props
-  const [ isLoading, setLoading ] = useState(true)
-  const [ user, setUser ] = useState({})
+  const { value, fetchUser, user } = props;
 
   useEffect(() => {
-    if(value) {
-      async function init() {
-        let res  = await fetchUser(value)
-        setUser(res.payload.entities.users[value])
-        setLoading(false)
-      }
-      init()
+    if (value && !user) {
+      fetchUser(value);
     }
-  }, [])
+  }, [user]);
 
-  if(isLoading && !Object.keys(user).length) {
-    return <span>Loading..</span>
+  if (user && !Object.keys(user).length) {
+    return <span>Loading..</span>;
   }
-  return (
-    <span>{ user && user.name}</span>
-  )
+  return <span>{user && user.name}</span>;
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (id) => dispatch(findUser(id))
-})
+const mapStateToProps = () => {
+  const getUser = getUserById();
+  return (state, ownProps) => ({
+    user: getUser(state.user, ownProps.value),
+  });
+};
 
-export default connect(null, mapDispatchToProps)(UserDetails)
+const mapDispatchToProps = (dispatch) => ({
+  fetchUser: (id) => dispatch(findUser(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);

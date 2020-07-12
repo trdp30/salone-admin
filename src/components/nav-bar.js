@@ -1,10 +1,10 @@
-import React from 'react';
-import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
-import { connect } from 'react-redux'
+import React from "react";
+import { Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { connect } from "react-redux";
 
-import { userIsAuthenticated } from '../config/auth';
-import { invalidate } from '../store/actions/session.action';
+import { userIsAuthenticated } from "../config/auth";
+import { invalidate } from "../store/actions/session.action";
 
 // const LoginLink = userIsNotAuthenticated(() => (
 //   <Nav.Item>
@@ -16,8 +16,12 @@ import { invalidate } from '../store/actions/session.action';
 //   </Nav.Item>
 // ))
 const LogoutLink = userIsAuthenticated(({ logout }) => (
-  <Nav.Item><div className="nav-link" onClick={logout}>Logout</div></Nav.Item>
-))
+  <Nav.Item>
+    <div className="nav-link" onClick={logout}>
+      Logout
+    </div>
+  </Nav.Item>
+));
 
 function NavBar({ user, logout }) {
   return (
@@ -31,24 +35,29 @@ function NavBar({ user, logout }) {
               width="30"
               height="30"
               className="d-inline-block align-top"
-            />{' '}
+            />{" "}
             Capaz
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-end"
+        >
           <Nav className="justify-content-end">
             <LinkContainer to="/dashboard">
-              <Nav.Link eventKey="/dashboard">
-                Dashboard
-              </Nav.Link>
+              <Nav.Link eventKey="/dashboard">Dashboard</Nav.Link>
             </LinkContainer>
             <NavDropdown title="Category" id="category-dropdown">
               <LinkContainer to="/categories">
-                <NavDropdown.Item eventKey="/categories">Categories</NavDropdown.Item>
+                <NavDropdown.Item eventKey="/categories">
+                  Categories
+                </NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to="/category/create">
-                <NavDropdown.Item eventKey="/category/create">Create Category</NavDropdown.Item>
+                <NavDropdown.Item eventKey="/category/create">
+                  Create Category
+                </NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
             <NavDropdown title="Item" id="item-dropdown">
@@ -56,7 +65,9 @@ function NavBar({ user, logout }) {
                 <NavDropdown.Item eventKey="/items">Items</NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to="/item/create">
-                <NavDropdown.Item eventKey="/item/create">Create Item</NavDropdown.Item>
+                <NavDropdown.Item eventKey="/item/create">
+                  Create Item
+                </NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
             <NavDropdown title="Order" id="item-dropdown">
@@ -64,22 +75,24 @@ function NavBar({ user, logout }) {
                 <NavDropdown.Item eventKey="/orders">Orders</NavDropdown.Item>
               </LinkContainer>
               <LinkContainer to="/order/create">
-                <NavDropdown.Item eventKey="/order/create">Create Order</NavDropdown.Item>
+                <NavDropdown.Item eventKey="/order/create">
+                  Create Order
+                </NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
             <Nav.Item>
               <LinkContainer to="/users">
-                <Nav.Link eventKey="/users">
-                  Users
-                </Nav.Link>
+                <Nav.Link eventKey="/users">Users</Nav.Link>
               </LinkContainer>
             </Nav.Item>
             <NavDropdown title="You" id="account-dropdown" alignRight>
               <LinkContainer to="/user/1/change-role">
-                <NavDropdown.Item eventKey="/user/1/change-role">Change Role</NavDropdown.Item>
+                <NavDropdown.Item eventKey="/user/1/change-role">
+                  Change Role
+                </NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
-            <LogoutLink logout={logout}/>
+            <LogoutLink logout={logout} />
             {/* <NavDropdown title="You" id="account-dropdown" alignRight>
               <LinkContainer to="/user/1/change-role">
                 <NavDropdown.Item eventKey="/user/1/change-role">Change Role</NavDropdown.Item>
@@ -106,16 +119,16 @@ function NavBar({ user, logout }) {
         </Navbar.Collapse>
       </Navbar>
     </>
-  )
+  );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
-  session: state.session
-})
+  session: state.session,
+});
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(invalidate())
-})
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(invalidate()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
