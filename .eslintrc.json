@@ -1,0 +1,25 @@
+{
+	"env": {
+		"browser": true,
+		"es2020": true
+	},
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 11,
+		"sourceType": "module"
+	},
+	"plugins": ["react"],
+	"rules": {
+		"react/prop-types": "off",
+		"no-undef": "off",
+		// "indent": ["warn", "tab"],
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"react/display-name": "off",
+		"no-useless-catch": "warn",
+		"array-bracket-spacing": "off"
+	}
+}

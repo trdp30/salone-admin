@@ -4,10 +4,10 @@ import { countSchema } from '../schemas/index.schema'
 import { actionInitiated, catchReduxError, normalizedData, actionSucceed } from './general.action';
 
 export const findDashboardCount = () => {
-  return function(dispatch) {
-    dispatch(actionInitiated(DASHBOARD_REQUEST_INITIATED))
-    return query('dashboard')
-    .then((response) => dispatch(actionSucceed(DASHBOARD_REQUEST_SUCCEED, response)))
-    .catch((e) => dispatch(catchReduxError(DASHBOARD_REQUEST_FAILED, e)))
-  }
+	return function(dispatch) {
+		dispatch(actionInitiated(DASHBOARD_REQUEST_INITIATED))
+		return query('dashboard')
+			.then((response) => dispatch(actionSucceed(DASHBOARD_REQUEST_SUCCEED, response)))
+			.catch((e) => dispatch(catchReduxError(DASHBOARD_REQUEST_FAILED, e)))
+	}
 }

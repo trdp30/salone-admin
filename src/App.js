@@ -7,15 +7,15 @@ import { isAuthenticated } from './store/actions/session.action';
 
 function App() {
 
-  useLayoutEffect(() => {
-    store.dispatch(isAuthenticated())
-  }, [])
+	useLayoutEffect(() => {
+		store.dispatch(isAuthenticated())
+	}, [])
 
-  return (
-    <Provider store={store}>
-      <Navigation />
-    </Provider>
-  );
+	return (
+		<Provider store={store}>
+			<Navigation />
+		</Provider>
+	);
 }
 
 export default App;

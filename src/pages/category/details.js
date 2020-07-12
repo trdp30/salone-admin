@@ -1,3 +1,4 @@
+/* prettier/prettier-disable */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { findCategory } from '../../store/actions/category.action';
@@ -39,47 +40,47 @@ function CategoryDetails(props) {
       {!props.categoryModel.request.isLoading  ? 
       (
         <div>
-          <div class="container-fluid text-center">
-            <div class="container" style={{marginTop : '10px'}}>
-              <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                  <img src={currentCategory.image_source} class="rounded-circle" alt="Category"/>
+          <div className="container-fluid text-center">
+            <div className="container" style={{marginTop : '10px'}}>
+              <div className="row justify-content-md-center">
+                <div className="col-md-auto">
+                  <img src={currentCategory.image_source} className="rounded-circle" alt="Category"/>
                 </div>
               </div>
             <h4>{currentCategory.name}</h4>
             </div> 
             <br/><br/>
-            <div class="row">
-              <div class="col-sm-4">
+            <div className="row">
+              <div className="col-sm-4">
                 <h5>Category Name</h5>
                 <h6>{currentCategory.name}</h6>
               </div>
-              <div class="col-sm-4">
+              <div className="col-sm-4">
                 <h5>Display Name</h5>
                 <h6>{currentCategory.display_name}</h6>
               </div>
-              <div class="col-sm-4">
+              <div className="col-sm-4">
                 <h5>Has Sub Category</h5>
                 <h6>{currentCategory.hasSubCategory ? 'True' : 'False'}</h6>
               </div>
             </div>
             <br/><br/>
-            <div class="row">
+            <div className="row">
               {currentCategory && currentCategory.items && currentCategory.items.length &&
-                <div class="col-sm-4">
+                <div className="col-sm-4">
                   <h5>Items</h5>
                   { showList ? 
-                    <button type="button" class="btn btn-info" onClick={toogleList}>Click to Close Items</button> :
-                    <button type="button" class="btn btn-info" onClick={toogleList}>Click to View Items</button>
+                    <button type="button" className="btn btn-info" onClick={toogleList}>Click to Close Items</button> :
+                    <button type="button" className="btn btn-info" onClick={toogleList}>Click to View Items</button>
                   }
                 </div>
               }
               { currentCategory.hasSubCategory && 
-                <div class="col-sm-4">
+                <div className="col-sm-4">
                   <h5>Sub Categories</h5>
                   { showSubCategory ? 
-                    <button type="button" class="btn btn-info" onClick={toogleSubCategory}>Click to Close Sub Categories</button> :
-                    <button type="button" class="btn btn-info" onClick={toogleSubCategory}>Click to View Sub Categories</button>
+                    <button type="button" className="btn btn-info" onClick={toogleSubCategory}>Click to Close Sub Categories</button> :
+                    <button type="button" className="btn btn-info" onClick={toogleSubCategory}>Click to View Sub Categories</button>
                   }
                 </div>
               }
@@ -103,7 +104,7 @@ function CategoryDetails(props) {
                   <tbody>
                   {currentCategory && currentCategory.items && currentCategory.items.length &&
                     currentCategory.items.map((itemId) => (
-                      <tr>
+                      <tr key={itemId}>
                         <td>
                           <img src={itemModel.data.byId[itemId] && itemModel.data.byId[itemId].image_source} alt="Avatar" style={{height : '23px', width : '31px'}}/>
                         </td>
@@ -132,8 +133,8 @@ function CategoryDetails(props) {
                   </thead>
                   <tbody>
                   {currentCategory && currentCategory.sub_categories && currentCategory.sub_categories.length &&
-                    currentCategory.sub_categories.map((sub_category) => (
-                      <tr>
+                    currentCategory.sub_categories.map((sub_category, i) => (
+                      <tr key={i}>
                         <td>{sub_category.name}</td>
                         <td>{sub_category.type}</td>
                       </tr>

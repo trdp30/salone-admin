@@ -16,19 +16,19 @@ import packageReducer from './reducers/package.reducer';
 import dashboardReducer from './reducers/dashboard.reducer';
 
 const reducers =  combineReducers({
-  appState: AppStateReducer,
-  networkAvailability: ConnectionReducer,
-  user: UserReducer,
-  session: SessionReducer,
-  register: registrationReducer,
-  category: categoryReducer,
-  item: itemReducers,
-  order: orderReducer,
-  cartItem: cartItemReducer,
-  address: addressReducer,
-  appointment: appointmentReducer,
-  package: packageReducer,
-  counts: dashboardReducer
+	appState: AppStateReducer,
+	networkAvailability: ConnectionReducer,
+	user: UserReducer,
+	session: SessionReducer,
+	register: registrationReducer,
+	category: categoryReducer,
+	item: itemReducers,
+	order: orderReducer,
+	cartItem: cartItemReducer,
+	address: addressReducer,
+	appointment: appointmentReducer,
+	package: packageReducer,
+	counts: dashboardReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

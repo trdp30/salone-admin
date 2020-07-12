@@ -4,37 +4,36 @@ import { withRouter } from 'react-router-dom';
 import { includes } from 'lodash';
 
 const unAuthenticatedRoute = [
-  '/login', '/logout', '/register'
+	'/login', '/logout', '/register'
 ]
 
 function AppContainer(props) {
-  const { location } = props
-  const [ showContainer, toggleContainer ] = useState(false)
+	const { location } = props
+	const [ showContainer, toggleContainer ] = useState(false)
 
-  useLayoutEffect(() => {
-    if(location && location.pathname && location.pathname.length) {
-      let isValid = !includes(unAuthenticatedRoute, location.pathname)
-      toggleContainer(isValid)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname])
+	useLayoutEffect(() => {
+		if(location && location.pathname && location.pathname.length) {
+			let isValid = !includes(unAuthenticatedRoute, location.pathname)
+			toggleContainer(isValid)
+		}
+	}, [location.pathname])
 
-  if(showContainer) {
-    return (
-      <Fragment>
-        <NavBar />
-        <div className="container">
-          {props.children}
-        </div>
-      </Fragment>
-    )
-  }
+	if(showContainer) {
+		return (
+			<Fragment>
+				<NavBar />
+				<div className="container">
+					{props.children}
+				</div>
+			</Fragment>
+		)
+	}
 
-  return (
-    <Fragment>
-      {props.children}
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			{props.children}
+		</Fragment>
+	)
 }
 
 export default  withRouter(AppContainer);

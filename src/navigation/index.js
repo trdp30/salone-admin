@@ -24,35 +24,35 @@ import DashBoard from '../pages/dashboard';
 import AppContainer from '../components/app-container';
 
 function Navigation() {
-  return (
-    <Router>
-      <AppContainer>
-        <Switch>
-          <Route path="/login" exact component={userIsNotAuthenticatedRedir(Login)} />
-          <Route path="/logout" exact component={Logout} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/categories" exact component={userIsAuthenticatedRedir(Categories)} />
-          <Route path="/category/create" exact component={userIsAuthenticatedRedir(CategoryCreate)} />
-          <Route path="/category/:category_id/details" exact component={userIsAuthenticatedRedir(CategoryDetails)} />
-          <Route path="/category/:category_id/edit" exact component={userIsAuthenticatedRedir(CategoryEdit)} />
-          <Route path="/items" exact component={userIsAuthenticatedRedir(Items)} />
-          <Route path="/item/create" exact component={userIsAuthenticatedRedir(ItemCreate)} />
-          <Route path="/item/:item_id/details" exact component={userIsAuthenticatedRedir(ItemDetails)} />
-          <Route path="/item/:item_id/edit" exact component={userIsAuthenticatedRedir(ItemEdit)} />
-          <Route path="/orders" exact component={userIsAuthenticatedRedir(Orders)} />
-          <Route path="/order/create" exact component={userIsAuthenticatedRedir(OrderCreate)} />
-          <Route path="/order/:order_id/details" exact component={userIsAuthenticatedRedir(OrderDetails)} />
-          <Route path="/order/:order_id/edit" exact component={userIsAuthenticatedRedir(OrderEdit)} />
-          <Route path="/users" exact component={userIsAuthenticatedRedir(Users)} />
-          <Route path="/user/:user_id/edit" exact component={userIsAuthenticatedRedir(UpdateUser)} />
-          <Route path="/user/:user_id/change-role" exact component={userIsAuthenticatedRedir(ChangeRole)} />
-          <Route path="/dashboard" exact component={userIsAuthenticatedRedir(DashBoard)}/>
-          <Route path="/" exact component={userIsAuthenticatedRedir(DashBoard)}/>
-          <Route path="*" render={() => <div>No route found</div>}/>
-        </Switch>
-      </AppContainer>
-    </Router>
-  )
+	return (
+		<Router>
+			<AppContainer>
+				<Switch>
+					<Route path="/login" exact component={userIsNotAuthenticatedRedir(Login)} />
+					<Route path="/logout" exact component={Logout} />
+					<Route path="/register" exact component={Register} />
+					<Route path="/categories" exact component={userIsAuthenticatedRedir(Categories)} />
+					<Route path="/category/create" exact component={userIsAuthenticatedRedir(CategoryCreate)} />
+					<Route path="/category/:category_id/details" exact component={userIsAuthenticatedRedir(CategoryDetails)} />
+					<Route path="/category/:category_id/edit" exact component={userIsAuthenticatedRedir(CategoryEdit)} />
+					<Route path="/items" exact component={userIsAuthenticatedRedir(Items)} />
+					<Route path="/item/create" exact component={userIsAuthenticatedRedir(ItemCreate)} />
+					<Route path="/item/:item_id/details" exact component={userIsAuthenticatedRedir(ItemDetails)} />
+					<Route path="/item/:item_id/edit" exact component={userIsAuthenticatedRedir(ItemEdit)} />
+					<Route path="/orders" exact component={userIsAuthenticatedRedir(Orders)} />
+					<Route path="/order/create" exact component={userIsAuthenticatedRedir(OrderCreate)} />
+					<Route path="/order/:order_id/details" exact component={userIsAuthenticatedRedir(OrderDetails)} />
+					<Route path="/order/:order_id/edit" exact component={userIsAuthenticatedRedir(OrderEdit)} />
+					<Route path="/users" exact component={userIsAuthenticatedRedir(Users)} />
+					<Route path="/user/:user_id/edit" exact component={userIsAuthenticatedRedir(UpdateUser)} />
+					<Route path="/user/:user_id/change-role" exact component={userIsAuthenticatedRedir(ChangeRole)} />
+					<Route path="/dashboard" exact component={userIsAuthenticatedRedir(DashBoard)}/>
+					<Route path="/" exact component={userIsAuthenticatedRedir(DashBoard)}/>
+					<Route path="*" render={() => <div>No route found</div>}/>
+				</Switch>
+			</AppContainer>
+		</Router>
+	)
 }
 
 export default Navigation
