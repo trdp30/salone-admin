@@ -14,12 +14,19 @@ import {
   createRecord,
   updateRecord,
 } from "../async-actions";
-import { itemArraySchema, itemSchema } from "../schemas/index.schema";
+import {
+  itemArraySchema,
+  itemSchema
+} from "../schemas/index.schema";
 
-export const fetchItems = () => {
-  return function (dispatch) {
+export const fetchItems = (q) => {
+  return function (dispatch, getState) {
+    if(getState().item.request.isLoading) return;
     dispatch(actionInitiated(ITEMS_REQUEST_INITIATED));
-    return query("item", { organization_id: 2 })
+    return query("item", {
+        organization_id: 2,
+        ...q
+      })
       .then((response) =>
         dispatch(
           normalizedData({

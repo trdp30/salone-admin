@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import InputField from "../../components/elements/input";
+import Dropdown from "../../components/helpers/dropdown";
+import { connect } from "react-redux";
+import { fetchItems } from "../../store/actions/item.action";
 
-export default function OrderCreate() {
+function OrderCreate(props) {
   const [phone, setPhone] = useState();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [address, setAddress] = useState();
   const [addressSecondary, setAddressSecondary] = useState();
+  const { itemModel, getItems } = props;
+  const [ selectedItem, setSelectedItem] = useState(null)
 
   return (
     <div>
@@ -53,11 +58,7 @@ export default function OrderCreate() {
 
           <form className="card p-2" style={{ width: "100%" }}>
             <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Promo code"
-              />
+              <input type="text" className="form-control" placeholder="Promo code" />
               <div className="input-group-append">
                 <button type="submit" className="btn btn-secondary">
                   Redeem
@@ -133,41 +134,27 @@ export default function OrderCreate() {
             <div className="row">
               <div className="col-md-5 mb-3">
                 <label htmlFor="country">Country</label>
-                <select
+                <Dropdown
                   className="custom-select d-block w-100"
-                  id="country"
-                  required=""
-                >
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div className="invalid-feedback">
-                  Please select a valid country.
-                </div>
+                  setSelectedOption={setSelectedItem}
+                  fetchData={getItems}
+                  selectedOption={selectedItem}
+                  modelName={"item"}
+                  content={itemModel}
+                />
+                <div className="invalid-feedback">Please select a valid country.</div>
               </div>
               <div className="col-md-4 mb-3">
                 <label htmlFor="state">State</label>
-                <select
-                  className="custom-select d-block w-100"
-                  id="state"
-                  required=""
-                >
+                <select className="custom-select d-block w-100" id="state" required="">
                   <option value="">Choose...</option>
                   <option>California</option>
                 </select>
-                <div className="invalid-feedback">
-                  Please provide a valid state.
-                </div>
+                <div className="invalid-feedback">Please provide a valid state.</div>
               </div>
               <div className="col-md-3 mb-3">
                 <label htmlFor="zip">Zip</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="zip"
-                  placeholder=""
-                  required=""
-                />
+                <input type="text" className="form-control" id="zip" placeholder="" required="" />
                 <div className="invalid-feedback">Zip code required.</div>
               </div>
             </div>
@@ -182,3 +169,9 @@ export default function OrderCreate() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  getItems: (query) => dispatch(fetchItems(query)),
+});
+
+export default connect(null, mapDispatchToProps)(OrderCreate);
